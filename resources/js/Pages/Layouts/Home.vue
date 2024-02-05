@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import Categories from '../Shared/Categories.vue';
 import BlogLayout from './BlogLayout.vue';
+import EventLayout from './EventLayout.vue';
 
 
 
@@ -148,7 +149,8 @@ const menu = () => {
                     </div>
                 </section>
 
-                <BlogLayout></BlogLayout>
+                <!-- <BlogLayout></BlogLayout> -->
+                <EventLayout></EventLayout>
                 
             </div>
 
