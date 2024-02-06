@@ -149,8 +149,8 @@ const menu = () => {
                     </div>
                 </section>
 
-                <!-- <BlogLayout></BlogLayout> -->
-                <EventLayout></EventLayout>
+                <BlogLayout></BlogLayout>
+                <!-- <EventLayout></EventLayout> -->
                 
             </div>
 
