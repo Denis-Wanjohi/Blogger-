@@ -16,7 +16,11 @@
             </div>
             <div class="flex mt-2  justify-between">
                 <div>
-                    <button class="bg-green-400 ml-2 px-1 py-2 rounded-xl w-full text-xs">Read More</button>
+                    <router-link to="/blog">
+                        <button class="bg-green-400 ml-2 px-1 py-2 rounded-xl w-full text-xs">Read More</button>
+                    </router-link>
+
+
                 </div>
                 <div>
                     <p class="text-sm text-end pr-2 italic">

@@ -2,6 +2,7 @@
 import TopBlog from '../Components/Blogs/TopBlog.vue';
 import Blogs from '../Components/Blogs/Blogs.vue';
 
+
 </script>
 
 
@@ -30,6 +31,7 @@ import Blogs from '../Components/Blogs/Blogs.vue';
             </section>
             <section class="pb-">
                 <Blogs></Blogs>
+                <!-- <ViewBlog></ViewBlog> -->
             </section>
 
 
