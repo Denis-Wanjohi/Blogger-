@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogsController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,4 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return inertia('Layouts/Home');
 });
+
+
+Route::group(['prefix'=>'auth'],function(){
+    Route::get('login',function(){
+        return inertia('Components/Auth/Login');
+    });
+});
+
+
 Route::get('/blogs',[BlogsController::class,'index']);
