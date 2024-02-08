@@ -24,6 +24,12 @@ Route::group(['prefix'=>'auth'],function(){
     Route::get('login',function(){
         return inertia('Components/Auth/Login');
     });
+    Route::post('login',function(){
+        dd(request());
+    });
+    Route::get('register',function(){
+        return inertia('Components/Auth/Register');
+    });
 });
 
 
