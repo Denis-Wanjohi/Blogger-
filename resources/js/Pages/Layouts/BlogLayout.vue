@@ -1,6 +1,7 @@
 <script setup>
 import TopBlog from '../Components/Blogs/TopBlog.vue';
 import Blogs from '../Components/Blogs/Blogs.vue';
+import { Head } from '@inertiajs/vue3';
 
 
 </script>
@@ -8,6 +9,7 @@ import Blogs from '../Components/Blogs/Blogs.vue';
 
 
 <template >
+    <Head title="Blogs"></Head>
     <div class="w-full h-screen overflow-y-scroll">
 
         <!-- <div  class="bg-green-600">

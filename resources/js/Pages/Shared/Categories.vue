@@ -1,4 +1,5 @@
 <script setup>
+import { Link } from "@inertiajs/vue3";
 import { ref } from "vue"
 
 
@@ -30,8 +31,11 @@ const resize=()=>{
   
             </div>
             <div class="border-black flex justify-around bg-green-200 text-center" :class="[CategoriesResize?'block':'hidden']">
-                <p class="w-full border-r border-black">Blogs</p>
-                <p class="w-full  border-black">Events</p>
+                <Link href="/" class="w-full border-r border-black" :class="$page.url === '/' ? 'font-bold bg-green-400 ':' '">Blogs</Link>
+                <Link href="/events" class="w-full  border-black" :class="$page.url === '/events' ? 'font-bold bg-green-400 ':' '">Events</Link>
+
+
+                
             </div>
             <ul>
                 <li class="border border-b-green-700 pl-3 my-4 pb-2 flex items-center">
