@@ -5,7 +5,7 @@ import Categories from '../Shared/Categories.vue';
 import BlogLayout from './BlogLayout.vue';
 import EventLayout from './EventLayout.vue';
 // import ProfileLayout from './Profilelayout.vue';
-import ViewBlog from '../Components/Blogs/ViewBlog.vue';
+import ViewBlog from '../Components/Blogs/ReadBlog.vue';
 import HeadNav from '../Shared/HeadNav.vue';
 
 
@@ -42,16 +42,14 @@ const menu = () => {
                 <EventLayout v-if="$page.url === '/events'"></EventLayout>
             </div>
         </div>
-        <!-- <div v-if="$page.url === '/profile/profile' ">
-              <ProfileLayout></ProfileLayout>
-        </div> -->
-        <div v-if="$page.url === '/blog/1'">
-          <ViewBlog></ViewBlog>  
-                
-        </div>
+
+        
+            <ViewBlog class="w-full h-screen mx-auto pb-10 pt-3 absolute top-[103px]"></ViewBlog>
+        
+
   <!-- <Blogs></Blogs> -->
 
-  <section v-if="$page.url === '/' || $page.url === '/events'  ">
+  <!-- <section v-if="$page.url === '/' || $page.url === '/events'  ">
     <div class="min-h-[100px] bg-green-400 w-full sm:flex justify-around hidden ">
       <div>
         <h2 class="font-bold text-2xl">Categories</h2>
@@ -81,7 +79,9 @@ const menu = () => {
 
       </div>
     </div>
-  </section>
+  </section> -->
+
+
 </template>
 
 

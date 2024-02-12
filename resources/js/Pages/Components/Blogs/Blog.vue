@@ -1,3 +1,7 @@
+<script setup>
+import { Link } from '@inertiajs/vue3';
+</script>
+
 <template>
     <div class="bg-blue-200 mt-5 md:w-[calc(30%)] sm:w-[calc(50%-80px)] h-[690px] sm:h-[850px] pb-3 my-3 mx-5 shadow-cyan-700">
             <div class="text-center text-3xl font-bold bg-blue-400 py-2">
@@ -16,9 +20,9 @@
             </div>
             <div class="flex mt-2  justify-between">
                 <div>
-                    <router-link to="/blog">
+                    <div @click.prevent="$emit('readBlog')">
                         <button class="bg-green-400 ml-2 px-1 py-2 rounded-xl w-full text-xs">Read More</button>
-                    </router-link>
+                    </div>
 
 
                 </div>
