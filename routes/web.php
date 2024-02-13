@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return inertia('Layouts/Home');
-});
+Route::get('/',[BlogsController::class,'index']);
 
 Route::get('/events',function(){
     return inertia('Layouts/Home');
@@ -41,10 +39,6 @@ Route::group(['prefix'=>'auth'],function(){
     });
 });
 
-// Route::get('/blog/1',function(){
-//     return inertia('Layouts/Home');
-// });
-
 Route::group(['prefix' => 'post'],function(){
     Route::get('blog',function(){
         return inertia('Components/Post/PostBlog');
@@ -62,7 +56,3 @@ Route::get('/post/blog',function(){
 Route::get('/post/event',function(){
     return inertia('Components/Post/PostEvent');
 });
-
-
-
-Route::get('/blogs',[BlogsController::class,'index']);

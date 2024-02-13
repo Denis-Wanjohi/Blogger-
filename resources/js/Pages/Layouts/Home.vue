@@ -1,14 +1,21 @@
 <script setup>
-import { computed, ref } from 'vue'
-import { usePage,Link } from '@inertiajs/vue3';
-import Categories from '../Shared/Categories.vue';
-import BlogLayout from './BlogLayout.vue';
-import EventLayout from './EventLayout.vue';
+import { ref } from 'vue'
+import { usePage, Link } from '@inertiajs/vue3'
+import Categories from '../Shared/Categories.vue'
+import BlogLayout from './BlogLayout.vue'
+import EventLayout from './EventLayout.vue'
 // import ProfileLayout from './Profilelayout.vue';
-import ViewBlog from '../Components/Blogs/ReadBlog.vue';
-import HeadNav from '../Shared/HeadNav.vue';
+import ViewBlog from '../Components/Blogs/ReadBlog.vue'
+import HeadNav from '../Shared/HeadNav.vue'
+
+let blogs = defineProps({ blogs: Object })
 
 
+let showBlogOverLay = ref(false)
+
+const BlogOverlay = () => {
+  showBlogOverLay.value = !showBlogOverLay.value
+}
 
 let menuVisibility = ref(false)
 const menu = () => {
@@ -19,33 +26,44 @@ const menu = () => {
 
 <template>
   <!-- HEADER -->
-  <HeadNav/>  
+  <HeadNav />
 
   <!-- CONTENTS -->
-  
-        <div class="flex">
-            
-            <div  class="bg-green-600" v-if="$page.url === '/' || $page.url === '/events'  ">
-                <Categories></Categories>
-            </div>
-           
-            <div class="w-full h-screen overflow-y-auto" style="scrollbar-color: white white;"   v-if="$page.url === '/' || $page.url === '/events'  ">
-                <section class="text-center flex justify-between text-2xl font-thin border sticky top-0 bg-gray-800 border-black text-white w-full" >
-                    <Link class="w-full" href="/" :class="[$page.url === '/' ? 'font-bold bg-orange-500' :'']">
-                        BLOGS
-                    </Link>
-                    <Link class="w-full" href="/events" :class="[$page.url === '/events' ? 'font-bold bg-orange-500' :'']" >
-                        EVENTS
-                    </Link>
-                </section>
-                <BlogLayout  v-if="$page.url === '/'"/>
-                <EventLayout v-if="$page.url === '/events'"></EventLayout>
-            </div>
-        </div>
 
-        
-            <ViewBlog class="w-full h-screen mx-auto pb-10 pt-3 absolute top-[103px]"></ViewBlog>
-        
+  <div class="flex">
+    <div class="bg-green-600" v-if="$page.url === '/' || $page.url === '/events'  ">
+      <Categories></Categories>
+    </div>
+
+    <div
+      class="w-full h-screen overflow-y-auto"
+      style="scrollbar-color: white white;"
+      v-if="$page.url === '/' || $page.url === '/events'  "
+    >
+      <section
+        class="text-center flex justify-between text-2xl font-thin border sticky top-0 bg-gray-800 border-black text-white w-full"
+      >
+        <Link
+          class="w-full"
+          href="/"
+          :class="[$page.url === '/' ? 'font-bold bg-orange-500' :'']"
+        >BLOGS</Link>
+        <Link
+          class="w-full"
+          href="/events"
+          :class="[$page.url === '/events' ? 'font-bold bg-orange-500' :'']"
+        >EVENTS</Link>
+      </section>
+      <BlogLayout v-if="$page.url === '/'" @readBlog="BlogOverlay" :blogs="blogs" />
+      <EventLayout v-if="$page.url === '/events'"></EventLayout>
+    </div>
+  </div>
+
+  <ViewBlog
+    class="w-full h-screen mx-auto pb-10 pt-3 absolute top-[60px]"
+    @CloseBlogOverLay="BlogOverlay"
+    :class="[showBlogOverLay ? 'block' : 'hidden']"
+  ></ViewBlog>
 
   <!-- <Blogs></Blogs> -->
 
@@ -79,9 +97,7 @@ const menu = () => {
 
       </div>
     </div>
-  </section> -->
-
-
+  </section>-->
 </template>
 
 

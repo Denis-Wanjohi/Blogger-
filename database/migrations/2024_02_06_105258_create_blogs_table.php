@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('Title');
             $table->string('mini_title');
-            $table->string('description');
-            $table->string('banner');
+            $table->text('description');
+            $table->string('banner')->nullable();
             $table->string('faculty');
             $table->timestamps();
         });
