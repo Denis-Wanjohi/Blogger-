@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[BlogsController::class,'index']);
+Route::get('/law',[BlogsController::class,'index']);
 
 Route::get('/events',function(){
     return inertia('Layouts/Home');

@@ -7,6 +7,7 @@ import EventLayout from './EventLayout.vue'
 // import ProfileLayout from './Profilelayout.vue';
 import ViewBlog from '../Components/Blogs/ReadBlog.vue'
 import HeadNav from '../Shared/HeadNav.vue'
+import { TailwindPagination } from 'laravel-vue-pagination';
 
 let blogs = defineProps({ blogs: Object })
 
@@ -54,7 +55,15 @@ const menu = () => {
           :class="[$page.url === '/events' ? 'font-bold bg-orange-500' :'']"
         >EVENTS</Link>
       </section>
-      <BlogLayout v-if="$page.url === '/'" @readBlog="BlogOverlay" :blogs="blogs" />
+      <div v-for="blog,index in blogs" :key="index">
+        
+        {{ blog.links[0].url }}
+        <!-- <BlogLayout v-if="$page.url === '/'" @readBlog="BlogOverlay" :blogs="blog" />
+        <TailwindPagination
+          :data="blog.links()"
+          @pagination-change-page="getResults"
+        /> -->
+      </div>
       <EventLayout v-if="$page.url === '/events'"></EventLayout>
     </div>
   </div>

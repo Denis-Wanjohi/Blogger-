@@ -10,7 +10,7 @@ class BlogsController extends Controller
     function index(){
     
        return inertia('Layouts/Home',[
-           'blogs' =>  Blogs::all()
+           'blogs' =>  Blogs::paginate(3)
        ]);
     }
 }
