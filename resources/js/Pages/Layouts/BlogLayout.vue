@@ -1,22 +1,24 @@
 <script setup>
-import TopBlog from '../Components/Blogs/TopBlog.vue';
-
 import { Head,Link } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { ref, toRefs } from 'vue';
 
+import TopBlog from '../Components/Blogs/TopBlog.vue';
 import Blog from '../Components/Blogs/Blog.vue';
-import { TailwindPagination } from 'laravel-vue-pagination';
+import ViewBlog from '../Components/Blogs/ReadBlog.vue'
 
-let props = defineProps({
+
+const  props = defineProps({
         blogs : Object
 })
 
-const getResults = async (page = 1) => {
-    const response = await fetch(`http://127.0.0.1:8000/?page=${page}`);
-    props.value = await response.json();
+let showBlogOverLay = ref(false);
+let {blogs} = toRefs(props)
+
+let  openBlog = ()=>{
+    showBlogOverLay.value = true
 }
 
-getResults();
+
 
 </script>
 
@@ -26,25 +28,25 @@ getResults();
             <section>
                 <TopBlog></TopBlog>
             </section>
-            <section class="flex flex-wrap">
-                <div v-for="blogData,index in props.blogs.data" :key="index" class="flex flex-wrap  justify-around" >
-                    <!-- <div v-for="blogData,index in blog.data" :key="index"  class="flex flex-wrap justify-around"> -->
-                        <Blog @readBlog="$emit('readBlog')" class="md:w-[350px] sm:w-[500px]" :blog="blogData"></Blog>
-                    <!-- </div> -->
+            <section class=" pb-20 w-full bg-red-500 overflow-y-auto">  
+                <div class="flex flex-wrap">
+                    <div class="md:w-[30%]" v-for="data in blogs.data" :key="data" >
+                        <Blog :blog="data" @readBlog="openBlog"></Blog>
+                    </div>
                 </div>
-
-                
-                <!-- <div v-for="blogLink,index in props.blogs.links" :key="index" class="flex justify-center"> -->
-                    <!-- <div v-for="blogLink,index in blog.links" :key="index"> -->
-                           <!-- <Link :href="blogLink.url" v-html="blogLink.label" class="mx-2"></Link> -->
-                    <!-- </div> -->
-                <!-- </div> -->
-                
-                <TailwindPagination
-                    :data="props.blogs.data"
-                    @pagination-change-page="getResults"
-                />
+                <div class="flex w-fit  pb-10 mt-2 mx-auto">
+                    <div v-for="link in blogs.links" :key="link">
+                        <Link :href=link.url v-html="link.label" v-if="link.url" class="mx-1 p-2 border-gray-300 border rounded-md"></Link>
+                    </div>
+                </div>
             </section>
-
+            <section class="bg-red-500">
+                <ViewBlog
+                    class="w-full h-screen mx-auto pb-10 pt-3 absolute top-[60px]"
+                    @closeOverLay=" showBlogOverLay = false"
+                    :class="[showBlogOverLay ? 'block' : 'hidden']"
+                    :post="blogs"
+                ></ViewBlog>
+            </section>
     </div>
 </template>

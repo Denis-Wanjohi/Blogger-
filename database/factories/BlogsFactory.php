@@ -18,7 +18,7 @@ class BlogsFactory extends Factory
      */
     public function definition(): array
     {
-        $faculties = ['Science and Technology','Business','Law','Media','Education','Engineering'];
+        $faculties = ['Science','IT & Computer','Business','Law','Media','Education','Engineering'];
         $faculty = Arr::random($faculties);
         return [
             'user_id' => fake()->numberBetween(10,50),

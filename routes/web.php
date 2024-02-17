@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogsController;
+use App\Http\Controllers\EventsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,11 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[BlogsController::class,'index']);
-Route::get('/law',[BlogsController::class,'index']);
+Route::get('/blog/{id}',[BlogsController::class,'index']);
+Route::get('/science',[BlogsController::class,'scienceBlogs']);
 
-Route::get('/events',function(){
-    return inertia('Layouts/Home');
-});
+
+Route::get('/events',[EventsController::class,'event']);
 
 Route::group(['prefix' => 'profile'],function(){
     Route::get('/',function(){

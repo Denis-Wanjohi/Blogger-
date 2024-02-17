@@ -12,9 +12,9 @@ const ReadBlogOverlay = () =>{
 
 <template>
   <div>
-    <div class="bg-zinc-300 rounded-t-3xl w-3/4 h-[90%] mx-auto">
+    <div class="bg-zinc-300 rounded-t-3xl w-[90%] h-[100%] mx-auto">
       <div class="border-b border-black flex justify-between px-5 py-2">
-        <div class="text-red cursor-pointer" @click.prevent="ReadBlogOverlay" >
+        <div class="text-red cursor-pointer" @click.prevent="event => $emit('closeOverLay')" >
           <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24">
             <g fill="currentColor">
               <path
@@ -30,7 +30,7 @@ const ReadBlogOverlay = () =>{
         </div>
         <div>Reading ...</div>
         <div>
-          <span class="font-bold">Share</span>
+          <!-- <span class="font-bold">Share</span> -->
         </div>
       </div>
       <div class="w-full h-[90%] my-2 px-2 flex">
