@@ -1,14 +1,15 @@
 <script setup>
-let blogs = defineProps({
+import { toRefs } from "vue"
+
+const props = defineProps({
     blog:Object
 })
 
+let {blog} = toRefs(props)
 </script>
 
 <template>
    <!-- md:w-[calc(30%)] sm:w-[calc(50%-80px)]  -->
-   
-
     <div class="bg-blue-200 mt-5  max-h-[690px] sm:h-[850px] my-3 mx-5 shadow-cyan-700 overflow-y-auto">
             <div class="text-center text-3xl font-bold bg-blue-400 py-2">
                 {{ blog.Title }}
@@ -25,7 +26,7 @@ let blogs = defineProps({
             </div>
             <div class="flex mt-2  justify-between">
                 <div>
-                    <div @click.prevent="$emit('readBlog')">
+                    <div @click.prevent="events= $emit">
                         <button class="bg-green-400 ml-2 px-1 py-2 rounded-xl w-full text-xs">Read More</button>
                     </div>
 

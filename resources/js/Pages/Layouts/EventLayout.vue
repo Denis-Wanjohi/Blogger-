@@ -20,10 +20,11 @@ let {events}  =  toRefs(props)
 
     <div class="flex">
         <div>
-            <Categories/>
+            <Categories :path="events.path" />
         </div>
         
         <div class="w-full">
+            
             <TabLinks :eventPath="events.path"/>
             <div class="flex flex-wrap justify-evenly">
                 <div v-for="event in events.data" class="md:w-[30%]">

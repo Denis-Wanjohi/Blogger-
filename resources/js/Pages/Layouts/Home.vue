@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, toRefs } from 'vue'
 import { usePage, Link } from '@inertiajs/vue3'
 import Categories from '../Shared/Categories.vue'
 import BlogLayout from './BlogLayout.vue'
@@ -9,6 +9,7 @@ import EventLayout from './EventLayout.vue'
 import HeadNav from '../Shared/HeadNav.vue'
 import TabLinks from '../Shared/TabLinks.vue'
 let blogs = defineProps({ blogs: Object })
+let blog = toRefs(blogs)
 
 let showBlogOverLay = ref(false)
 
@@ -20,12 +21,6 @@ let menuVisibility = ref(false)
 const menu = () => {
   menuVisibility.value = !menuVisibility.value
 }
-
-const getResults = async (page = 1) => {
-  alert()
-  const response = await fetch(`http://127.0.0.1:8000/blog/?page=${page}`)
-  blogs.value = await response.json()
-}
 </script>
 
 
@@ -36,9 +31,11 @@ const getResults = async (page = 1) => {
   <!-- CONTENTS -->
 
   <div class="flex">
-    <Categories></Categories>
+    
+    <Categories :path="blogs.blogs.path"></Categories>
     <div>
       <TabLinks :blogPath="blogs.blogs.path"></TabLinks>
+      {{ blogs.blogs.path }}
       <div>
         <BlogLayout @readBlog="BlogOverlay" :blogs="blogs.blogs" />
       </div>

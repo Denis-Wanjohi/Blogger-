@@ -15,7 +15,8 @@ class BlogsController extends Controller
     }
 
     function scienceBlogs(){
-        $scienceBlogs = Blogs::paginate(3);
+        $blogs = Blogs::all();
+        $scienceBlogs = $blogs->where('faculty','like','Media');
         return inertia('Layouts/test',[
             'blog' => $scienceBlogs
         ]);

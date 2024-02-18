@@ -4,7 +4,7 @@ import { ref, toRefs } from 'vue';
 
 import TopBlog from '../Components/Blogs/TopBlog.vue';
 import Blog from '../Components/Blogs/Blog.vue';
-import ViewBlog from '../Components/Blogs/ReadBlog.vue'
+import ViewBlog from '../Components/Blogs/ViewBlog.vue'
 
 
 const  props = defineProps({
