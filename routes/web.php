@@ -16,12 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[BlogsController::class,'index']);
+
 Route::get('/blog/{id}',[BlogsController::class,'index']);
-Route::get('/science',[BlogsController::class,'scienceBlogs']);
+
+Route::group(['prefix' => '/'],function(){
+    Route::get('/',[BlogsController::class,'index']);
+    Route::post('blogs/{faculty}',[BlogsController::class,'facultyBlogs']);
+});
 
 
 Route::get('/events',[EventsController::class,'event']);
+
+Route::group(['prefix' => '/events'],function(){
+    Route::post('/{faculty}',[EventsController::class,'facultyBlogs']);
+});
 
 Route::group(['prefix' => 'profile'],function(){
     Route::get('/',function(){

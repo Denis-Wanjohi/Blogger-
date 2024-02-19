@@ -10,9 +10,9 @@ let {blog} = toRefs(props)
 
 <template>
    <!-- md:w-[calc(30%)] sm:w-[calc(50%-80px)]  -->
-    <div class="bg-blue-200 mt-5  max-h-[690px] sm:h-[850px] my-3 mx-5 shadow-cyan-700 overflow-y-auto">
+    <div class="bg-blue-200 mt-5  max-h-[690px] sm:h-[850px] my-3 mx-5 shadow-cyan-700 overflow-y-auto" >
             <div class="text-center text-3xl font-bold bg-blue-400 py-2">
-                {{ blog.Title }}
+                {{ blog.faculty }}
             </div>
             <img src="/cat.jpeg" alt="" class="h-[40%] w-full object-cover">
             <div class="text-center text-xl font-bold py-2 opacity-1">

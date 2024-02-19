@@ -8,17 +8,18 @@ use Illuminate\Http\Request;
 class BlogsController extends Controller
 {
     function index(){
-    
+    $blogs = Blogs::all();
+    // $blog = $blogs->where('faculty','=','Science');
        return inertia('Layouts/Home',[
-           'blogs' =>  Blogs::paginate(6)
+           'blogs' =>  $blogs
        ]);
     }
 
-    function scienceBlogs(){
+    function facultyBlogs(){
         $blogs = Blogs::all();
-        $scienceBlogs = $blogs->where('faculty','like','Media');
-        return inertia('Layouts/test',[
-            'blog' => $scienceBlogs
+        $scienceBlogs = $blogs->where('faculty','=',request('faculty'));
+        return inertia('Layouts/Home',[
+            'blogs' => $scienceBlogs
         ]);
     }
 }

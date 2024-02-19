@@ -29,9 +29,9 @@ let  openBlog = ()=>{
                 <TopBlog></TopBlog>
             </section>
             <section class=" pb-20 w-full bg-red-500 overflow-y-auto">  
-                <div class="flex flex-wrap">
-                    <div class="md:w-[30%]" v-for="data in blogs.data" :key="data" >
-                        <Blog :blog="data" @readBlog="openBlog"></Blog>
+                <div class="flex flex-wrap justify-evenly">
+                    <div class="md:w-[30%]"  v-for="data in blogs" :key="data" >
+                        <Blog :blog="data" @readBlog="openBlog" ></Blog>
                     </div>
                 </div>
                 <div class="flex w-fit  pb-10 mt-2 mx-auto">
