@@ -1,20 +1,21 @@
 <script setup>
+import { toRefs } from 'vue'
 
-const emit = defineEmits(["CloseBlogOverLay"])
+const emit = defineEmits(['CloseBlogOverLay'])
+const props = defineProps({ post: Object })
 
+let { post} = toRefs(props)
 
-const ReadBlogOverlay = () =>{
-  emit("CloseBlogOverLay")
+const ReadBlogOverlay = () => {
+  emit('CloseBlogOverLay')
 }
-
-
 </script>
 
 <template>
-  <div>
+  <div v-if="post">
     <div class="bg-zinc-300 rounded-t-3xl w-[90%] h-[100%] mx-auto">
       <div class="border-b border-black flex justify-between px-5 py-2">
-        <div class="text-red cursor-pointer" @click.prevent="event => $emit('closeOverLay')" >
+        <div class="text-red cursor-pointer" @click.prevent="event => $emit('closeOverLay')">
           <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24">
             <g fill="currentColor">
               <path
@@ -28,7 +29,7 @@ const ReadBlogOverlay = () =>{
             </g>
           </svg>
         </div>
-        <div>Reading ...</div>
+        <div>{{ post.data.Title }}</div>
         <div>
           <!-- <span class="font-bold">Share</span> -->
         </div>
@@ -39,11 +40,15 @@ const ReadBlogOverlay = () =>{
         </div>
         <div class="w-1/2 h-[100%]">
           <div class="flex flex-col">
-            <p class="font-bold text-3xl text-center border-b border-b-black pb-2">WILD HOT</p>
-            <p class="text-center font-bold text-xl my-2">who is that??...</p>
+            <p class="font-bold text-3xl text-center border-b border-b-black pb-2">{{post.data.mini_title}}</p>
+            <!-- <p class="text-center font-bold text-xl my-2">who is that??...</p> -->
           </div>
           <div class="w-[90%] mx-auto max-h-[100%] bg-green-400">
-            <div id="one" class="w-full min-h-[10%] h-fit overflow-scroll" style="scrollbar-color: white white;k">
+            <div
+              id="one"
+              class="w-full min-h-[10%] h-fit overflow-scroll"
+              style="scrollbar-color: white white;"
+            >
               <div class="flex justify-between align-middle px-2 py-1 bg-red-200">
                 <div class="flex">
                   <div>
@@ -88,11 +93,10 @@ const ReadBlogOverlay = () =>{
               </div>
               <div class="h-[100%] overflow-y-scroll bg-blue-400">
                 <div class="h-[200px] overflow-y-scroll pl-2">
-                  <p>Lorem wipsum dolor sit amet consectetur adipisicing elit. Nulla necessitatibus magni eveniet, illo eaque labore dolor accusantium consequatur assumenda? Sint, illum odio. Voluptas consectetur amet atque obcaecati eos sequi sint iure vitae! Fugit quisquam eum sit assumenda voluptatum harum maxime quas neque sequi! Rerum debitis modi ea dolores consequuntur, error voluptatibus. Voluptas, neque. Ex molestiae eos consequatur, dolorum architecto ipsa natus, expedita quos et, suscipit eum officia perspiciatis quas. Deserunt necessitatibus enim magni voluptatum debitis dolor cupiditate magnam illo consequatur? Ut beatae eligendi odit ex id eaque, soluta quibusdam expedita, ipsam necessitatibus delectus sit corrupti obcaecati nostrum labore, laborum rerum assumenda qui. Debitis pariatur blanditiis nisi corporis. Delectus mollitia sint voluptatem numquam explicabo iste nobis quisquam officia minus voluptates quos quidem quaerat doloribus accusantium repellendus quis quibusdam inventore, voluptatum aspernatur. Eaque, quidem aspernatur velit dignissimos temporibus tempora, atque eveniet facere blanditiis autem impedit repellat ab provident itaque! Consequuntur, temporibus ratione quam incidunt neque corporis debitis nostrum quidem excepturi esse! Voluptatum, magni, laudantium nihil eligendi ut consequatur maiores quasi velit ipsum animi ipsam cupiditate, libero expedita sunt voluptas temporibus iusto repudiandae quos asperiores natus. Commodi incidunt fugit sed reiciendis! Commodi sequi doloremque incidunt nisi rerum atque sapiente, vel ratione facilis obcaecati odit consequatur architecto quas explicabo, aliquid, pariatur odio? Velit veniam fugiat, facilis nobis optio commodi cum magnam ea, dolorum ratione eaque, similique voluptatibus ipsum. Nulla expedita ratione doloremque minus. Doloribus debitis aspernatur dolorum porro ut voluptatibus numquam qui deleniti amet assumenda fuga accusantium nemo, quos eum voluptatum asperiores enim corrupti? Nulla voluptatem quod tempora magni nostrum nobis ipsam odio dolor adipisci minima esse deserunt consequatur, eos velit a deleniti est! Architecto beatae enim nostrum asperiores facere incidunt rem, voluptatum perferendis fugit, iusto dolorum corrupti est nobis exercitationem quia illum necessitatibus earum voluptatem provident. Officia, soluta molestiae ab tempore cupiditate quo.</p>
+                  <p>{{ post.data.description }} </p>
                 </div>
-                <div class="w-[100%]  bg-green-400 h-[100px] overflow-y-scroll">
-                  
-                  <div class="flex mt-1 border-t  border-t-black bg-red-300 max-h-[70px]">
+                <div class="w-[100%] bg-green-400 h-[100px] overflow-y-auto">
+                  <div class="flex mt-1 border-t border-t-black bg-red-300 max-h-[70px]">
                     <div>
                       <img src="cat.jpeg" class="w-8 rounded-full ml-1" alt />
                     </div>
@@ -127,11 +131,6 @@ const ReadBlogOverlay = () =>{
                       </div>
                     </div>
                   </div>
-
-                  
-                  
-
-                
                 </div>
               </div>
             </div>
@@ -167,16 +166,23 @@ const ReadBlogOverlay = () =>{
               </div>
               <div class="w-full">
                 <input
-                  type="text" placeholder="comment..."
+                  type="text"
+                  placeholder="comment..."
                   class="w-[100%] h-[35px] border-black border-2 rounded-xl pl-2 outline-none focus:border-purple-700 focus:shadow-xl"
                 />
               </div>
               <div class="grid place-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M5 1v21l7-5l7 5V1z"/></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25px"
+                  height="25px"
+                  viewBox="0 0 24 24"
+                >
+                  <path fill="none" stroke="currentColor" stroke-width="2" d="M5 1v21l7-5l7 5V1z" />
+                </svg>
               </div>
             </div>
           </div>
-          
         </div>
       </div>
     </div>

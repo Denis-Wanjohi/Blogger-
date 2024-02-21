@@ -26,7 +26,7 @@ let {blog} = toRefs(props)
             </div>
             <div class="flex mt-2  justify-between">
                 <div>
-                    <div @click.prevent="events= $emit">
+                    <div @click.prevent="events=> $emit('readBlog',{data:blog})">
                         <button class="bg-green-400 ml-2 px-1 py-2 rounded-xl w-full text-xs">Read More</button>
                     </div>
 

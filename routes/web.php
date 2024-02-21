@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogsController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\EventsController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,7 +48,10 @@ Route::group(['prefix'=>'auth'],function(){
     Route::get('register',function(){
         return inertia('Components/Auth/Register');
     });
+    // Route::post('register',[Controller::class,'register']);
 });
+
+Route::post('/auth/register',[Controller::class,'register']);
 
 Route::group(['prefix' => 'post'],function(){
     Route::get('blog',function(){
