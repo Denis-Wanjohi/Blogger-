@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blogs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BlogsController extends Controller
 {
@@ -11,7 +12,8 @@ class BlogsController extends Controller
     $blogs = Blogs::all();
     // $blog = $blogs->where('faculty','=','Science');
        return inertia('Layouts/Home',[
-           'blogs' =>  $blogs
+           'blogs' =>  $blogs,
+           'user' => Auth::user()
        ]);
     }
 
@@ -19,7 +21,8 @@ class BlogsController extends Controller
         $blogs = Blogs::all();
         $scienceBlogs = $blogs->where('faculty','=',request('faculty'));
         return inertia('Layouts/Home',[
-            'blogs' => $scienceBlogs
+            'blogs' => $scienceBlogs,
+           'user' => Auth::user()
         ]);
     }
 }

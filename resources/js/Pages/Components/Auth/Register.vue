@@ -12,14 +12,11 @@ let form = useForm({
     paswordConfirmation: null
 })
 
-
-
-
-
-
+const submit = () => {
+    router.post('/auth/register',form)
+};
 
 </script>
-
 
 <template>
     <div class="sm:w-3/4 m-auto   flex justify-center align-middle ">
@@ -34,7 +31,7 @@ let form = useForm({
                 </Link>
             </div>
             <hr class="w-full border-black">
-            <form @submit.prevent="form.post('/auth/register')">
+            <form @submit.prevent="submit">
                 <div class= "sm:h-[70%] h-fit p-2 flex">
                     <div class="text-center pt-5 py-4 sm:w-3/4 w-full mx-auto flex flex-col justify-around">
                         <div class="flex flex-col sm:w-3/4 w-full  mx-auto ">

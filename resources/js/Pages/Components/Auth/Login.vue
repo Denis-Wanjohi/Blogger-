@@ -1,16 +1,19 @@
 <script setup>
 
-import { reactive } from 'vue';
-import { useForm,Link } from '@inertiajs/vue3';
+import { reactive, toRefs } from 'vue';
+import { useForm,Link,router } from '@inertiajs/vue3';
 
 const form = useForm({
     email:'',
-    pasword:''
+    password:''
 });
 
 const submit = ()=>{
-    form.post('login')
+    router.post('/auth/login',form);
 }
+
+const props = defineProps({errors:Object})
+let {errors} = toRefs(props)
 
 </script>
 
@@ -32,11 +35,20 @@ const submit = ()=>{
                     <form action="" @submit.prevent="submit" class="text-center pt-5 py-4 sm:w-3/4  w-full mx-auto flex flex-col justify-around">
                         <div class="flex flex-col sm:w-3/4 w-full  mx-auto ">
                             <label for="username" class="sm:text-start mb-2 ">Email</label>
-                            <input type="text" class="w-full  mx-auto min-h-[40px] pl-2 rounded-xl outline-none border-0 focus:shadow-blue-800 shadow-lg border-b">
+                            <input type="text" 
+                                    v-model="form.email"
+                                    name="email" 
+                                    :class="[errors.email? 'shadow-red-200': '']"
+                                    class="w-full  mx-auto min-h-[40px] pl-2 rounded-xl outline-none border-0 focus:shadow-blue-800 shadow-lg border-b">
+                            <p class="mt-3 text-black font-mono text-xs font-light">{{errors.email}}</p>
                         </div>
                         <div class="flex flex-col sm:w-3/4 w-full mx-auto">
                             <label for="username" class="sm:text-start mb-2 ">Password</label>
-                            <input type="password" class="w-full  mx-auto min-h-[40px] pl-2 rounded-xl outline-none border-0 focus:shadow-blue-800 shadow-lg border-b">
+                            <input type="password" 
+                                   v-model="form.password"
+                                   name="password"
+                                   :class="[errors.email? 'shadow-red-200': '']"
+                                   class="w-full  mx-auto min-h-[40px] pl-2 rounded-xl outline-none border-0 focus:shadow-blue-800 shadow-lg border-b">
                         </div>
                         <div>
                             <button type="submit" class="bg-blue-500 mt-5 px-5 py-2 rounded-md hover:bg-blue-700 sm:w-1/2">

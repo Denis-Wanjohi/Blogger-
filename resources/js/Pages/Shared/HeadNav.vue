@@ -1,5 +1,5 @@
 <script setup>
-import { Link } from '@inertiajs/vue3'
+import { Link, router } from '@inertiajs/vue3'
 import {ref} from 'vue'
 import Categories from './Categories.vue';
 let menuVisibility = ref(false)
@@ -12,6 +12,10 @@ const categories = ()=>{
   categoriesVisibility.value = true
   console.log(categoriesVisibility.value)
 }
+
+let logout =()=>{
+  router.post('/auth/logout')
+}
 </script>
 
 <template>
@@ -23,8 +27,9 @@ const categories = ()=>{
         <br />
         <span
           class="text-sm ml-5 md:inline-block md:aling-baseline italic"
-        >...where you get the updates</span>
-    </div>
+          v-if="$page.props.user"
+        >...where you get all the spice</span>
+      </div>
     <div class="w-[50%] text-center grid place-self-center sm:block hidden " v-if="$page.url === '/profile'">
       <p class="text-3xl font-bold text-center shadow w-[90%] ">PROFILE</p>
     </div>
@@ -44,14 +49,15 @@ const categories = ()=>{
         />
       </div>
       <div class="ml-5 cursor-pointer" @click.prevent="menu">
-        <img src="/cat.jpeg" alt class="w-10 h-10 rounded-full shadow-xl" />
+        <img src="/cat.jpeg" alt class="w-10 h-10 rounded-full shadow-xl" v-if="$page.props.user" />
+        <Link :href="router.get('/auth/login')" class="px-3 my-1 bg-blue-400 rounded-xl" v-else>Sign in</Link>
       </div>
     </div>
   </nav>
 
 <!-- DROP DOWN -->
 
-  <nav :class="[menuVisibility ? 'block': 'hidden' ]">
+  <nav :class="[menuVisibility ? 'block': 'hidden' ]" v-if="$page.props.user">
     <div class="border bg-gray-100 shadow-xl w-[250px] mr-4 absolute right-0 rounded-t-md z-10">
       <span class="absolute right-0 cursor-pointer" @click="menu">
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24">
@@ -64,8 +70,8 @@ const categories = ()=>{
       <div class="flex ml-4 mt-2">
         <img src="/cat.jpeg" class="w-10 rounded-full" />
         <div class="flex flex-col ml-5">
-          <span class="font-bold">Kim Kinuthia</span>
-          <span class="text-sm">kinuthiakim@gmial.com</span>
+          <span class="font-bold">{{$page.props.user.firstname}} {{ $page.props.user.lastname }}</span>
+          <span class="text-sm">{{ $page.props.user.email }}</span>
         </div>
       </div>
       <hr class="border-blue-900 my-4" />
@@ -127,7 +133,7 @@ const categories = ()=>{
             </svg>
             <span class="ml-2">Post Event</span>
           </Link>
-          <li class="flex items-center pl-2 border-b mb-1 border-b-blue-500">
+          <li @click.prevent="logout" class="flex items-center pl-2 border-b mb-1 border-b-blue-500 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 14 14">
               <path
                 fill="none"

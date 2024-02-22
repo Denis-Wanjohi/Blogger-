@@ -11,8 +11,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function register(Request $request){
-            dd('hello');
+    public function register(){
+        
         // $user = $request->validate([
             
         // ]);

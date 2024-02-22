@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -40,18 +41,16 @@ Route::group(['prefix' => 'profile'],function(){
 
 Route::group(['prefix'=>'auth'],function(){
     Route::get('login',function(){
-        return inertia('Components/Blogs/Blog');
+        return inertia('Components/Auth/Login');
     });
-    // Route::post('login',function(){
-    //     dd(request());
-    // });
+    Route::post('/login',[UserController::class,'login'])->name('auth.login');
+    Route::post('/logout',[UserController::class,'logout'])->name('auth.logout');
     Route::get('register',function(){
         return inertia('Components/Auth/Register');
     });
-    // Route::post('register',[Controller::class,'register']);
+    Route::post('/register',[UserController::class,'register'])->name('auth.register');
 });
 
-Route::post('/auth/register',[Controller::class,'register']);
 
 Route::group(['prefix' => 'post'],function(){
     Route::get('blog',function(){
