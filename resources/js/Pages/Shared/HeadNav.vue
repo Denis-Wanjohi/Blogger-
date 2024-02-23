@@ -27,7 +27,6 @@ let logout =()=>{
         <br />
         <span
           class="text-sm ml-5 md:inline-block md:aling-baseline italic"
-          v-if="$page.props.user"
         >...where you get all the spice</span>
       </div>
     <div class="w-[50%] text-center grid place-self-center sm:block hidden " v-if="$page.url === '/profile'">
@@ -49,15 +48,16 @@ let logout =()=>{
         />
       </div>
       <div class="ml-5 cursor-pointer" @click.prevent="menu">
-        <img src="/cat.jpeg" alt class="w-10 h-10 rounded-full shadow-xl" v-if="$page.props.user" />
-        <Link :href="router.get('/auth/login')" class="px-3 my-1 bg-blue-400 rounded-xl" v-else>Sign in</Link>
+        <!--  v-if="$page.props.user"  -->
+        <img src="/cat.jpeg" alt class="w-10 h-10 rounded-full shadow-xl"/>
+        <!-- <Link :href="router.get('/auth/login')" class="px-3 my-1 bg-blue-400 rounded-xl">Sign in</Link> -->
       </div>
     </div>
   </nav>
 
 <!-- DROP DOWN -->
-
-  <nav :class="[menuVisibility ? 'block': 'hidden' ]" v-if="$page.props.user">
+<!-- v-if="$page.props.user" -->
+  <nav :class="[menuVisibility ? 'block': 'hidden' ]" >
     <div class="border bg-gray-100 shadow-xl w-[250px] mr-4 absolute right-0 rounded-t-md z-10">
       <span class="absolute right-0 cursor-pointer" @click="menu">
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24">
@@ -70,8 +70,8 @@ let logout =()=>{
       <div class="flex ml-4 mt-2">
         <img src="/cat.jpeg" class="w-10 rounded-full" />
         <div class="flex flex-col ml-5">
-          <span class="font-bold">{{$page.props.user.firstname}} {{ $page.props.user.lastname }}</span>
-          <span class="text-sm">{{ $page.props.user.email }}</span>
+          <!-- <span class="font-bold">{{$page.props.user.firstname}} {{ $page.props.user.lastname }}</span> -->
+          <!-- <span class="text-sm">{{ $page.props.user.email }}</span> -->
         </div>
       </div>
       <hr class="border-blue-900 my-4" />

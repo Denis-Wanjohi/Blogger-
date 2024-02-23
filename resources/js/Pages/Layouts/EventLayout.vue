@@ -1,5 +1,4 @@
 <script setup>
-import { Head,Link } from '@inertiajs/vue3';
 import { toRefs,ref } from 'vue';
 import { usePage,router } from '@inertiajs/vue3';
 
@@ -47,13 +46,13 @@ let selectedFaculty = (data)=>{
                 </div>
 
             </div>
-            <div class="flex w-fit  pb-10 mt-2 mx-auto">
+            <!-- <div class="flex w-fit  pb-10 mt-2 mx-auto"> -->
                
-                <div v-for="link in events.links">
-                    <Link :href="link.url" v-if="link.url" v-html="link.label" class="mx-1 p-2 border-gray-300 border rounded-md"></Link>
+                <!-- <div v-for="link in events.links"> -->
+                    <!-- <Link :href="link.url" v-if="link.url" v-html="link.label" class="mx-1 p-2 border-gray-300 border rounded-md"></Link> -->
                     <!-- <component :is="link.url ? Link : span" :href="link.url">one</component> -->
-                </div>
-            </div>
+                <!-- </div> -->
+            <!-- </div> -->
         </div>
     </div>
     

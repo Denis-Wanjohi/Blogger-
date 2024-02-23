@@ -15,7 +15,7 @@
                             <button class="text-end bg-green-400 hover:bg-green-500 font-bold px-2 py-1 mt-2 rounded-xl mr-2">Read more</button>
                         </div>
                     </div>
-                    <img src="/cat.jpeg" alt="" class="sm:w-3/4 h-[400px] object-cover">
+                    <img src="/cars/sh1.jpg" alt="" class="sm:w-3/4 h-[400px] object-cover">
 
             </div>
 

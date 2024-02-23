@@ -23,7 +23,8 @@ Route::get('/blog/{id}',[BlogsController::class,'index']);
 
 Route::group(['prefix' => '/'],function(){
     Route::get('/',[BlogsController::class,'index']);
-    Route::post('blogs/{faculty}',[BlogsController::class,'facultyBlogs']);
+    // Route::get('blogs/{faculty}',[BlogsController::class,'getFacultyBlogs']);
+    Route::post('blogs/{faculty}',[BlogsController::class,'facultyBlogs'])->name('facultyBlogs');
 });
 
 
@@ -56,10 +57,12 @@ Route::group(['prefix' => 'post'],function(){
     Route::get('blog',function(){
         return inertia('Components/Post/PostBlog');
     });
+    Route::post('/blog',[BlogsController::class,'postBlog']);
 
     Route::get('event',function(){
         return inertia('Components/Post/PostEvent');
     });
+    Route::post('/event',[EventsController::class,'postEvent']);
 });
 
 Route::get('/post/blog',function(){

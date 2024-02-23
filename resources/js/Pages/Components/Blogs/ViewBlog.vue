@@ -36,7 +36,7 @@ const ReadBlogOverlay = () => {
       </div>
       <div class="w-full h-[90%] my-2 px-2 flex">
         <div class="w-1/2 h-full flex flex-col">
-          <img src="cat.jpeg" class="h-full w-full" alt />
+          <img :src="post.data.banner" class="h-full w-full" alt />
         </div>
         <div class="w-1/2 h-[100%]">
           <div class="flex flex-col">

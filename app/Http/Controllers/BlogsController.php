@@ -13,16 +13,33 @@ class BlogsController extends Controller
     // $blog = $blogs->where('faculty','=','Science');
        return inertia('Layouts/Home',[
            'blogs' =>  $blogs,
-           'user' => Auth::user()
        ]);
     }
 
+    // public function getFacultyBlogs(){
+    //     return redirect()->route('facultyBlogs');
+    // }
     function facultyBlogs(){
         $blogs = Blogs::all();
         $scienceBlogs = $blogs->where('faculty','=',request('faculty'));
         return inertia('Layouts/Home',[
-            'blogs' => $scienceBlogs,
-           'user' => Auth::user()
+            'blogs' => $scienceBlogs
         ]);
+    }
+
+    public function postBlog(){
+        $blog = request()->validate([
+            'title' => 'required',
+            'mini_title' => 'required',
+            'description' => 'required',
+            'faculty' => 'required'
+        ]);
+        if(request()->hasFile('banner')){
+            $blog['banner'] = request('banner')->store('blogs','public');
+        }
+        $blog['user_id'] = 1;
+
+        Blogs::create($blog);
+        return redirect('/');
     }
 }
