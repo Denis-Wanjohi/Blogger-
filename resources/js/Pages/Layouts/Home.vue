@@ -10,7 +10,7 @@ import HeadNav from '../Shared/HeadNav.vue'
 import TabLinks from '../Shared/TabLinks.vue'
 let blogs = defineProps({ blogs: Object })
 let {blog} = toRefs(blogs)
-
+// let {user} = toRefs(blogs)
 
 let showBlogOverLay = ref(false)
 let {page} = usePage();
@@ -47,7 +47,7 @@ let selectedFaculty = (data)=>{
     
     <Categories @faculty="selectedFaculty"></Categories>
     <div>
-    
+      {{ user }}
       <TabLinks :blogPath="blogs.blogs.path"></TabLinks>
       <div>
         <BlogLayout @readBlog="BlogOverlay" :blogs="blogs.blogs" />

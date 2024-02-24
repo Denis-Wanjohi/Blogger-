@@ -1,10 +1,9 @@
 <script setup>
-import { Link, router, usePage } from '@inertiajs/vue3'
+import { Link, router } from '@inertiajs/vue3'
 import {ref} from 'vue'
 import Categories from './Categories.vue';
 let menuVisibility = ref(false)
 let categoriesVisibility = ref(false)
-let user = router.activeVisit
 const menu = () => {
   menuVisibility.value = !menuVisibility.value
 }
@@ -13,12 +12,6 @@ const categories = ()=>{
   categoriesVisibility.value = true
   console.log(categoriesVisibility.value)
 }
-defineProps({
-    canLogin: Boolean,
-    canRegister: Boolean,
-    laravelVersion: String,
-    phpVersion: String,
-});
 
 let logout =()=>{
   router.post('/auth/logout')
@@ -30,7 +23,6 @@ let logout =()=>{
       <div class="sm:flex sm:items-baseline ml-5 m-auto">
         <span class="text-5xl font-bold">
           <Link href="/">Blogger</Link>
-          <!-- <Link href="/">{{ user.email }}</Link> -->
         </span>
         <br />
         <span
@@ -47,30 +39,20 @@ let logout =()=>{
       <p class="text-3xl font-bold text-center shadow w-[90%] ">POST BLOG</p>
     </div>
   
-    <!-- <div class="flex items-center my-auto h-3/4 sm:mr-10 mr-5">
+    <div class="flex items-center my-auto h-3/4 sm:mr-10 mr-5">
       <div class="flex rounded-5xl hidden sm:block">
         <input
           type="text"
           placeholder="search..."
           class="pl-1 outline-none border-0 border-b-black border-b-2 rounded focus:border-b-purple-900 max-h-8"
         />
-      </div> -->
-      <!-- <div class="ml-5 cursor-pointer" @click.prevent="menu" > -->
+      </div>
+      <div class="ml-5 cursor-pointer" @click.prevent="menu">
         <!--  v-if="$page.props.user"  -->
-        <!-- <img src="/cat.jpeg" alt class="w-10 h-10 rounded-full shadow-xl"/> -->
-        <!-- <Link href="/auth/login" class="px-3 my-1 bg-blue-400 rounded-xl">Sign in</Link> -->
-      <!-- </div> -->
-
-      <div  class="sm:fixed sm:top-0 sm:end-0 p-6 text-end z-10">
-            <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</Link>
-
-            <template v-else>
-                <Link :href="route('login')" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</Link>
-
-                <Link :href="route('register')" class="ms-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</Link>
-            </template>
-        </div>
-    
+        <img src="/cat.jpeg" alt class="w-10 h-10 rounded-full shadow-xl"/>
+        <!-- <Link :href="router.get('/auth/login')" class="px-3 my-1 bg-blue-400 rounded-xl">Sign in</Link> -->
+      </div>
+    </div>
   </nav>
 
 <!-- DROP DOWN -->
@@ -88,8 +70,8 @@ let logout =()=>{
       <div class="flex ml-4 mt-2">
         <img src="/cat.jpeg" class="w-10 rounded-full" />
         <div class="flex flex-col ml-5">
-          <!-- <span class="font-bold">{{user.firstname}} {{user.lastname }}</span> -->
-          <!-- <span class="text-sm">{{ user.email }}</span> -->
+          <!-- <span class="font-bold">{{$page.props.user.firstname}} {{ $page.props.user.lastname }}</span> -->
+          <!-- <span class="text-sm">{{ $page.props.user.email }}</span> -->
         </div>
       </div>
       <hr class="border-blue-900 my-4" />
