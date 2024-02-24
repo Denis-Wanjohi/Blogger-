@@ -26,8 +26,8 @@ let {errors} = toRefs(props)
             </div>
             <div class="font-thin text-center mb-3">
                 New to the community?? 
-                <Link href="/auth/register">
-                    <span class="text-blue-500 text-sm hover:underline hover:font-bold">Register</span>
+                <Link :href="'/auth/register'"  class="text-blue-500 text-sm hover:underline hover:font-bold">
+                    Register
                 </Link>
             </div>
             <hr class="w-full border-black">
