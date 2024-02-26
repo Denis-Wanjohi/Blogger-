@@ -23,6 +23,14 @@ class ProfileController extends Controller
             'status' => session('status'),
         ]);
     }
+    /**
+     * Display the user's profile form.
+     */
+    public function index(){
+        return inertia('Components/Profile/profile',[
+            'user' => Auth::user()
+        ]);
+    }
 
     /**
      * Update the user's profile information.

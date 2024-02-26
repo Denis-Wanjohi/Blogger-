@@ -25,6 +25,15 @@ class BlogsController extends Controller
         ]);
     }
 
+    public function getFacultyBlogs(){
+        $blogs = Blogs::all();
+        // dd(request('faculty'));
+        $selectedBlogs = $blogs->where('faculty','=',request('faculty'));
+        return inertia('Layouts/Home',[
+            'blogs' => new AllBlogsCollection($selectedBlogs),
+        ]);
+    }
+
     public function postBlog(){
         $blog = request()->validate([
             'title' => 'required',
@@ -36,7 +45,7 @@ class BlogsController extends Controller
             $file = request('banner')->store('blogs','public');
         }
         $blog['user_id'] = Auth::user()->id;
-        $blog['banner'] = "storage/".$file;
+        $blog['banner'] = "/storage/".$file;
 
         Blogs::create($blog);
         return redirect('/');
