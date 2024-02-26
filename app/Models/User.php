@@ -17,16 +17,17 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'firstname',
-        'lastname',
-        'username',
-        'email',
-        'password',
-        'faculty',
-        'profilePicture'
-    ];
+    // protected $fillable = [
+    //     'firstname',
+    //     'lastname',
+    //     'username',
+    //     'email',
+    //     'password',
+    //     'faculty',
+    //     'profilePicture'
+    // ];
 
+    protected $guarded = [];
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -46,4 +47,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function blogs(){
+        return $this->hasMany(Blogs::class);
+    }
 }

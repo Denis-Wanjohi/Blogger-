@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AllBlogsCollection;
 use App\Models\Blogs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,20 +11,17 @@ class BlogsController extends Controller
 {
     function index(){
     $blogs = Blogs::all();
-    // $blog = $blogs->where('faculty','=','Science');
        return inertia('Layouts/Home',[
-           'blogs' =>  $blogs,
+           'blogs' => new AllBlogsCollection($blogs),
        ]);
     }
 
-    // public function getFacultyBlogs(){
-    //     return redirect()->route('facultyBlogs');
-    // }
     function facultyBlogs(){
         $blogs = Blogs::all();
-        $scienceBlogs = $blogs->where('faculty','=',request('faculty'));
+        // dd(request('faculty'));
+        $selectedBlogs = $blogs->where('faculty','=',request('faculty'));
         return inertia('Layouts/Home',[
-            'blogs' => $scienceBlogs
+            'blogs' => new AllBlogsCollection($selectedBlogs),
         ]);
     }
 
@@ -35,9 +33,10 @@ class BlogsController extends Controller
             'faculty' => 'required'
         ]);
         if(request()->hasFile('banner')){
-            $blog['banner'] = request('banner')->store('blogs','public');
+            $file = request('banner')->store('blogs','public');
         }
-        $blog['user_id'] = 1;
+        $blog['user_id'] = Auth::user()->id;
+        $blog['banner'] = "storage/".$file;
 
         Blogs::create($blog);
         return redirect('/');
