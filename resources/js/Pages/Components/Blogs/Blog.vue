@@ -1,20 +1,26 @@
 <script setup>
-import { toRefs } from "vue"
+import { router } from "@inertiajs/vue3";
+import { toRefs,ref } from "vue"
 
 const props = defineProps({
-    blog:Object
+    blog:Object,
+
 })
 
 let {blog} = toRefs(props)
+
+
 </script>
 
 <template>
    <!-- md:w-[calc(30%)] sm:w-[calc(50%-80px)]  -->
-    <div class="bg-blue-200 mt-5  max-h-[690px] sm:h-[850px] my-3 mx-5 shadow-cyan-700 overflow-y-auto" >
+   
+   <div class="bg-blue-200 mt-5  max-h-[690px] sm:h-[850px] my-3 mx-5 shadow-cyan-700 overflow-y-auto" >
             <div class="text-center text-3xl font-bold bg-blue-400 py-2">
-                {{ blog.faculty }}
+                {{blog.Title }}
+    
             </div>
-            <img :src="blog.banner" alt="" class="h-[40%] w-full object-cover">
+            <img :src=blog.banner alt="" class="h-[40%] w-full object-cover">
             <div class="text-center text-xl font-bold py-2 opacity-1">
                 {{blog.mini_title}}
             </div>
@@ -37,7 +43,7 @@ let {blog} = toRefs(props)
                     <!-- on {{created_at}} -->
                     </p>
                     <p class="text-sm text-end italic pr-2 font-bold">
-                        ~kim kimani
+                        ~{{blog.user.username}}
                     </p>
                 </div>
                 

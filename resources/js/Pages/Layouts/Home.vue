@@ -8,8 +8,31 @@ import BlogLayout from './BlogLayout.vue'
 
 import HeadNav from '../Shared/HeadNav.vue'
 import TabLinks from '../Shared/TabLinks.vue'
-let blogs = defineProps({ blogs: Object })
-let {blog} = toRefs(blogs)
+// let blogs = defineProps({ blogs: Object })
+let props = defineProps({
+    canLogin: {
+        type: Boolean,
+        value: true,
+    },
+    canRegister: {
+        type: Boolean,
+    },
+    laravelVersion: {
+        type: String,
+        required: true,
+    },
+    phpVersion: {
+        type: String,
+        required: true,
+    },
+    blogs:{
+      type:Object,
+    },
+ 
+});
+let data = toRefs(props)
+let blogs = data.blogs
+
 // let {user} = toRefs(blogs)
 
 let showBlogOverLay = ref(false)
@@ -39,7 +62,7 @@ let selectedFaculty = (data)=>{
 
 <template>
   <!-- HEADER -->
-  <HeadNav />
+  <HeadNav :canLogin="canLogin" />
 
   <!-- CONTENTS -->
 
@@ -47,10 +70,9 @@ let selectedFaculty = (data)=>{
     
     <Categories @faculty="selectedFaculty"></Categories>
     <div>
-      {{ user }}
-      <TabLinks :blogPath="blogs.blogs.path"></TabLinks>
+      <!-- <TabLinks :blogPath="blogs.blogs.path"></TabLinks> -->
       <div>
-        <BlogLayout @readBlog="BlogOverlay" :blogs="blogs.blogs" />
+        <BlogLayout @readBlog="BlogOverlay" :blogs="blogs"  />
       </div>
     </div>
   </div>

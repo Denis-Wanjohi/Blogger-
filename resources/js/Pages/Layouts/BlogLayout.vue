@@ -12,7 +12,7 @@ const props = defineProps({
 
 let showBlogOverLay = ref(false)
 let selectedBlog = ref(null)
-let { blogs } = toRefs(props)
+let { blogs} = toRefs(props)
 
 let openBlog = (data) => {
   selectedBlog = data
@@ -28,19 +28,19 @@ let openBlog = (data) => {
     </section>
     <section class="pb-20 w-full bg-red-500 overflow-y-auto">
       <div class="flex flex-wrap justify-evenly">
-        <div class="md:w-[30%]" v-for="data in blogs" :key="data">
+        <div class="md:w-[30%]" v-for="data in blogs.data" :key="data">
           <Blog :blog="data" @readBlog="openBlog"></Blog>
         </div>
       </div>
       <div class="flex w-fit pb-10 mt-2 mx-auto">
-        <div v-for="link in blogs.links" :key="link">
+        <!-- <div v-for="link in blogs.links" :key="link">
           <Link
             :href="link.url"
             v-html="link.label"
             v-if="link.url"
             class="mx-1 p-2 border-gray-300 border rounded-md"
           ></Link>
-        </div>
+        </div> -->
       </div>
     </section>
     <section class="bg-red-500" >

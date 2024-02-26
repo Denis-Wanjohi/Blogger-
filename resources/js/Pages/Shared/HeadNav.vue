@@ -1,7 +1,14 @@
 <script setup>
-import { Link, router } from '@inertiajs/vue3'
+import { Link, router, usePage } from '@inertiajs/vue3'
 import {ref} from 'vue'
 import Categories from './Categories.vue';
+
+defineProps({
+  canLogin:{
+    type:Boolean,
+    
+  }
+})
 let menuVisibility = ref(false)
 let categoriesVisibility = ref(false)
 const menu = () => {
@@ -39,20 +46,45 @@ let logout =()=>{
       <p class="text-3xl font-bold text-center shadow w-[90%] ">POST BLOG</p>
     </div>
   
-    <div class="flex items-center my-auto h-3/4 sm:mr-10 mr-5">
-      <div class="flex rounded-5xl hidden sm:block">
+    <div class="flex items-center  justify-between my-auto h-3/4 sm:mr-10 mr-5 w-fit">
+      <div class="flex rounded-5xl hidden sm:block w-full">
         <input
           type="text"
           placeholder="search..."
           class="pl-1 outline-none border-0 border-b-black border-b-2 rounded focus:border-b-purple-900 max-h-8"
         />
       </div>
-      <div class="ml-5 cursor-pointer" @click.prevent="menu">
-        <!--  v-if="$page.props.user"  -->
-        <img src="/cat.jpeg" alt class="w-10 h-10 rounded-full shadow-xl"/>
-        <!-- <Link :href="router.get('/auth/login')" class="px-3 my-1 bg-blue-400 rounded-xl">Sign in</Link> -->
+      <div class="ml-5 cursor-pointer w-full" @click.prevent="menu" >
+        <img src="/cat.jpeg" alt class="w-10 h-10 rounded-full shadow-xl" v-if="$page.props.auth.user"/>
+        <div v-else>
+          <!-- class="sm:fixed sm:top-0 sm:right-0 p-6 text-end" -->
+            <Link
+                v-if="$page.props.auth.user"
+                :href="route('dashboard')"
+                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                >Dashboard</Link
+            >
+
+            <template v-else>
+                <Link
+                    :href="route('login')"
+                    class="font-semibold text-gray-600 bg-blue-200 p-1.5 rounded-l hover:bg-blue-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                    >Log in</Link
+                >
+
+                <Link
+                    
+                    :href="route('register')"
+                    class="ms-4 font-semibold bg-blue-200 p-1.5 rounded-r hover:bg-blue-500 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                    >Register</Link
+                >
+            </template>
+        </div> 
       </div>
+
     </div>
+
+  
   </nav>
 
 <!-- DROP DOWN -->

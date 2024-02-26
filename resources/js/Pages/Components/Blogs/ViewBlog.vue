@@ -29,7 +29,7 @@ const ReadBlogOverlay = () => {
             </g>
           </svg>
         </div>
-        <div>{{ post.data.Title }}</div>
+        <div class="text-6xl font-mono font-bold">{{ post.data.Title }}</div>
         <div>
           <!-- <span class="font-bold">Share</span> -->
         </div>
@@ -40,7 +40,7 @@ const ReadBlogOverlay = () => {
         </div>
         <div class="w-1/2 h-[100%]">
           <div class="flex flex-col">
-            <p class="font-bold text-3xl text-center border-b border-b-black pb-2">{{post.data.mini_title}}</p>
+            <p class="font-bold text-2xl text-center border-b border-b-black pb-2">{{post.data.mini_title}}</p>
             <!-- <p class="text-center font-bold text-xl my-2">who is that??...</p> -->
           </div>
           <div class="w-[90%] mx-auto max-h-[100%] bg-green-400">
@@ -56,7 +56,7 @@ const ReadBlogOverlay = () => {
                   </div>
                   <div class="px-2">
                     <p class="font-bold flex">
-                      Kim Kinuthia
+                      {{post.data.user.firstname}} {{ post.data.user.lastname }}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="25px"
@@ -70,7 +70,7 @@ const ReadBlogOverlay = () => {
                       </svg>
                       <span class="text-sm font-bold mt-1">Follow</span>
                     </p>
-                    <p class="text-xs">12:00pm 12-03-2024</p>
+                    <p class="text-xs">12:00pm {{post.data.created_at}}</p>
                   </div>
                 </div>
                 <div>

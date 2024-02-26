@@ -42,7 +42,15 @@ let submit = ()=>{
                 </div>
                 <div class="flex flex-col sm:w-3/4 sm:ml-3 w-full mx-auto">
                     <label for="faculty" class="sm:text-start mb-2 ">Faculty</label>
-                    <input type="text" name="faculty" v-model="form.faculty"  class="w-full bg-white pt-2 mx-auto min-h-[40px] pl-2 rounded-xl outline-none border-0 focus:shadow-blue-800 shadow-lg border-b">
+                    <!-- <input type="" name="faculty" v-model="form.faculty"  class="w-full bg-white pt-2 mx-auto min-h-[40px] pl-2 rounded-xl outline-none border-0 focus:shadow-blue-800 shadow-lg border-b"> -->
+                    <select name="faculty" id="" v-model="form.faculty" class="w-full bg-white pt-2 mx-auto min-h-[40px] pl-2 rounded-xl outline-none border-0 focus:shadow-blue-800 shadow-lg border-b">
+                        <option value="Science">Science</option>
+                        <option value="Law">Law</option>
+                        <option value="Education">Education</option>
+                        <option value="IT&Computer">IT & Computer</option>
+                        <option value="Business">Business</option>
+                        <option value="Media">Media</option>
+                    </select>
                 </div>
             </div>
             <div class="flex flex-col sm:w-3/4 w-full mx-auto">
