@@ -1,5 +1,10 @@
 <script setup>
+import {  toRefs } from "vue";
 import HeadNav from "../../Shared/HeadNav.vue";
+const props = defineProps({
+    user:Object
+})
+let {user} = toRefs(props)
 </script>
 <template>
     <HeadNav/>
@@ -10,30 +15,30 @@ import HeadNav from "../../Shared/HeadNav.vue";
                 </div>
                 <div class="flex sm:w-3/4 mt-5 rounded sm:h-[40%] h-fit mx-auto bg-blue-600">
                     <div class="sm:w-[40%] sm:h-full w-[70px] h-[100px]  sm:rounded sm:grid sm:place-content-center sm:py-3 overflow-hidden bg-green-400">
-                        <img src="/cat.jpeg" class=" sm:w-[260px]  w-[60px]  mx-auto rounded-full  sm:rounded-br-[100px] sm:my-5"  alt="">
+                        <img :src="user.profilePicture" class=" sm:w-[260px]  w-[60px]  mx-auto rounded-full  sm:rounded-br-[100px] sm:my-5"  alt="">
                     </div>
                     <div class="w-full bg-teal-100 grid place-items-center">
                         <div class="w-[90%] h-[70%] shadow-xl rounded-xl text-xl grid px-5">
                             <table >
                                 <tr>
                                     <td>
-                                        <p> <span class="font-bold">Firstname</span> : Kim</p>
+                                        <p> <span class="font-bold">Firstname</span> : {{user.firstname}}</p>
                                     </td>
                                     <td>
-                                        <p><span class="font-bold">Lastname</span> : kinuthia</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><span class="font-bold">Username</span> : kimKin</p>
-                                    </td>
-                                    <td>
-                                        <p><span class="font-bold">Faculty</span> : Science</p>
+                                        <p><span class="font-bold">Lastname</span> : {{user.lastname}}</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <p><span class="font-bold">Email</span>:  kimkinuthia@gmial.com</p>
+                                        <p><span class="font-bold">Username</span> : {{user.username}}</p>
+                                    </td>
+                                    <td>
+                                        <p><span class="font-bold">Faculty</span> : {{user.faculty}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p><span class="font-bold">Email</span>:  {{ user.email }}</p>
                                     </td>
                                 </tr>
                             </table>
@@ -46,7 +51,8 @@ import HeadNav from "../../Shared/HeadNav.vue";
                             <span class="font-bold ">Bio</span><br>
                             <hr>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint omnis esse veritatis rerum nisi quis voluptatum delectus ratione corrupti natus. Libero deleniti pariatur quod eos itaque magni excepturi quasi soluta.30
+                                {{ user.bio }}
+                                <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint omnis esse veritatis rerum nisi quis voluptatum delectus ratione corrupti natus. Libero deleniti pariatur quod eos itaque magni excepturi quasi soluta.30 -->
                             </p>
                         </div>
                     </div>

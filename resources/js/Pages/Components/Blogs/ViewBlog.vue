@@ -52,12 +52,13 @@ const ReadBlogOverlay = () => {
               <div class="flex justify-between align-middle px-2 py-1 bg-red-200">
                 <div class="flex">
                   <div>
-                    <img src="cat.jpeg" class="w-10 rounded-full" alt />
+                    <img src="/cat.jpeg" class="w-10 rounded-full" />
                   </div>
                   <div class="px-2">
                     <p class="font-bold flex">
                       {{post.data.user.firstname}} {{ post.data.user.lastname }}
                       <svg
+                        v-if="post.data.user_id !== $page.props.auth.user.id" 
                         xmlns="http://www.w3.org/2000/svg"
                         width="25px"
                         height="25px"
@@ -68,7 +69,7 @@ const ReadBlogOverlay = () => {
                           d="M12 10a2 2 0 0 0-2 2a2 2 0 0 0 2 2c1.11 0 2-.89 2-2a2 2 0 0 0-2-2"
                         />
                       </svg>
-                      <span class="text-sm font-bold mt-1">Follow</span>
+                      <span class="text-sm font-bold mt-1" v-if="post.data.user_id !== $page.props.auth.user.id"  >Follow</span>
                     </p>
                     <p class="text-xs">12:00pm {{post.data.created_at}}</p>
                   </div>
@@ -93,7 +94,8 @@ const ReadBlogOverlay = () => {
               </div>
               <div class="h-[100%] overflow-y-scroll bg-blue-400">
                 <div class="h-[200px] overflow-y-scroll pl-2">
-                  <p>{{ post.data.description }} </p>
+                  <p>{{ post.data.description}} </p>
+                  <!-- <p>{{ $page.props.auth.user.id }} </p> -->
                 </div>
                 <div class="w-[100%] bg-green-400 h-[100px] overflow-y-auto">
                   <div class="flex mt-1 border-t border-t-black bg-red-300 max-h-[70px]">
