@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
 
 Route::group(['prefix' => '/'],function(){
     Route::get('/',[BlogsController::class,'index']);
-    // Route::get('blogs/{faculty}',[BlogsController::class,'getFacultyBlogs']);
+    Route::get('blogs/{faculty}',[BlogsController::class,'getFacultyBlogs']);
     Route::post('blogs/{faculty}',[BlogsController::class,'facultyBlogs'])->name('facultyBlogs');
 });
 
@@ -52,11 +52,15 @@ Route::group(['prefix' => '/events'],function(){
     Route::post('/{faculty}',[EventsController::class,'facultyBlogs']);
 });
 
+// Route::group(['prefix' => 'profile'],function(){
+//     Route::get('/',function(){
+//         return inertia('Components/Profile/profile');
+//     });
+// });
+
 Route::group(['prefix' => 'profile'],function(){
-    Route::get('/',function(){
-        return inertia('Components/Profile/profile');
-    });
-});
+    Route::get('/',[ProfileController::class,'index']);
+})->middleware('auth');
 
 Route::group(['prefix'=>'auth'],function(){
     Route::get('login',function(){
@@ -81,7 +85,7 @@ Route::group(['prefix' => 'post'],function(){
         return inertia('Components/Post/PostEvent');
     });
     Route::post('/event',[EventsController::class,'postEvent']);
-});
+})->middleware('auth');
 
 Route::get('/post/blog',function(){
     return inertia('Components/Post/PostBlog');

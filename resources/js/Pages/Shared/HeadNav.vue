@@ -54,8 +54,8 @@ let logout =()=>{
           class="pl-1 outline-none border-0 border-b-black border-b-2 rounded focus:border-b-purple-900 max-h-8"
         />
       </div>
-      <div class="ml-5 cursor-pointer w-full" @click.prevent="menu" >
-        <img src="/cat.jpeg" alt class="w-10 h-10 rounded-full shadow-xl" v-if="$page.props.auth.user"/>
+      <div class="ml-5 cursor-pointer w-full"  >
+        <img src="/cat.jpeg" alt class="w-10 h-10 rounded-full shadow-xl" @click.prevent="menu" v-if="$page.props.auth.user"/>
         <div v-else>
           <!-- class="sm:fixed sm:top-0 sm:right-0 p-6 text-end" -->
             <Link
