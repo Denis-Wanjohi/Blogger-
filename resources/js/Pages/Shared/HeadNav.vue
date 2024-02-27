@@ -21,6 +21,7 @@ const categories = ()=>{
 }
 
 let logout =()=>{
+  menuVisibility.value = !menuVisibility.value
   router.post('/auth/logout')
 }
 </script>
@@ -57,29 +58,20 @@ let logout =()=>{
       <div class="ml-5 cursor-pointer w-full"  >
         <img src="/cat.jpeg" alt class="w-10 h-10 rounded-full shadow-xl" @click.prevent="menu" v-if="$page.props.auth.user"/>
         <div v-else>
-          <!-- class="sm:fixed sm:top-0 sm:right-0 p-6 text-end" -->
-            <Link
-                v-if="$page.props.auth.user"
-                :href="route('dashboard')"
-                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                >Dashboard</Link
-            >
-
-            <template v-else>
                 <Link
                     :href="route('login')"
-                    class="font-semibold text-gray-600 bg-blue-200 p-1.5 rounded-l hover:bg-blue-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                    class="font-semibold text-gray-600 bg-blue-300 p-1.5 rounded-l hover:bg-blue-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                     >Log in</Link
                 >
 
                 <Link
                     
                     :href="route('register')"
-                    class="ms-4 font-semibold bg-blue-200 p-1.5 rounded-r hover:bg-blue-500 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                    class="ms-4 font-semibold  bg-blue-300 p-1.5 rounded-r hover:bg-blue-500 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                     >Register</Link
                 >
-            </template>
-        </div> 
+            
+       </div> 
       </div>
 
     </div>
@@ -138,7 +130,7 @@ let logout =()=>{
             </svg>
             <Link class="ml-2" href="/profile">Profile</Link>
           </li>
-          <Link href="/post/blog" class="flex items-center pl-2 border-b border-b-blue-500">
+          <Link href="/post/blog" class="flex items-center pl-2 border-b border-b-blue-500" @click="menu">
             <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 64 64">
               <path
                 fill="black"
@@ -152,7 +144,7 @@ let logout =()=>{
             <span class="ml-2">Post Blog</span>
           </Link>
 
-          <Link href="/post/event" class="flex items-center pl-2 border-b border-b-blue-500">
+          <Link href="/post/event" class="flex items-center pl-2 border-b border-b-blue-500" @click="menu">
             <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 32 32">
               <path
                 fill="black"

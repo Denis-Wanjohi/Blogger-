@@ -38,12 +38,12 @@ let selectedFaculty = (data)=>{
             
             <TabLinks :eventPath="events.path"/>
             <div class="flex flex-wrap justify-evenly">
-                <div v-for="event in events.data" v-if="router.page.url === '/events'"  class="md:w-[30%]">
+                <div v-for="event in events.data"   class="md:w-[45%] border mt-3">
                     <Event :event="event"/>
                 </div>
-                <div v-for="event in events" v-else  class="md:w-[30%]">
+                <!-- <div v-for="event in events" v-else  >
                     <Event :event="event"/>
-                </div>
+                </div> -->
 
             </div>
             <!-- <div class="flex w-fit  pb-10 mt-2 mx-auto"> -->

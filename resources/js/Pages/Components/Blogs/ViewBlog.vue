@@ -1,5 +1,6 @@
 <script setup>
-import { toRefs } from 'vue'
+import { router } from '@inertiajs/vue3'
+import { ref, toRefs } from 'vue'
 
 const emit = defineEmits(['CloseBlogOverLay'])
 const props = defineProps({ post: Object })
@@ -8,6 +9,20 @@ let { post} = toRefs(props)
 
 const ReadBlogOverlay = () => {
   emit('CloseBlogOverLay')
+}
+
+let userComment = ref('')
+let finalComment = ref(null)
+
+let typeComment =  ()=>{
+  finalComment.value = userComment.value.trim();
+  console.log(finalComment.value)
+}
+let cmt = null
+let  comment =(data)=>{
+  console.log(data);
+    let comment = finalComment.value
+    router.post('/comment',{comment,data})
 }
 </script>
 
@@ -46,8 +61,8 @@ const ReadBlogOverlay = () => {
           <div class="w-[90%] mx-auto max-h-[100%] bg-green-400">
             <div
               id="one"
-              class="w-full min-h-[10%] h-fit overflow-scroll"
-              style="scrollbar-color: white white;"
+              class="w-full min-h-[10%] h-fit overflow-y-scroll"
+              style="scrollbar-width:none"
             >
               <div class="flex justify-between align-middle px-2 py-1 bg-red-200">
                 <div class="flex">
@@ -58,7 +73,7 @@ const ReadBlogOverlay = () => {
                     <p class="font-bold flex">
                       {{post.data.user.firstname}} {{ post.data.user.lastname }}
                       <svg
-                        v-if="post.data.user_id !== $page.props.auth.user.id" 
+                      v-if="$page.props.auth.user && post.data.user_id !== $page.props.auth.user.id" 
                         xmlns="http://www.w3.org/2000/svg"
                         width="25px"
                         height="25px"
@@ -69,7 +84,9 @@ const ReadBlogOverlay = () => {
                           d="M12 10a2 2 0 0 0-2 2a2 2 0 0 0 2 2c1.11 0 2-.89 2-2a2 2 0 0 0-2-2"
                         />
                       </svg>
-                      <span class="text-sm font-bold mt-1" v-if="post.data.user_id !== $page.props.auth.user.id"  >Follow</span>
+                      <div v-if="$page.props.auth.user">
+                        <span class="text-sm font-bold mt-1" v-if="post.data.user_id !== $page.props.auth.user.id"  >Follow</span>
+                      </div>
                     </p>
                     <p class="text-xs">12:00pm {{post.data.created_at}}</p>
                   </div>
@@ -92,8 +109,8 @@ const ReadBlogOverlay = () => {
                   </svg>
                 </div>
               </div>
-              <div class="h-[100%] overflow-y-scroll bg-blue-400">
-                <div class="h-[200px] overflow-y-scroll pl-2">
+              <div class="h-[100%] overflow-y-scroll bg-blue-400" style="scrollbar-width:none">
+                <div class="max-h-[200px] min-h-[100px] overflow-y-scroll pl-2" style="scrollbar-width:none">
                   <p>{{ post.data.description}} </p>
                   <!-- <p>{{ $page.props.auth.user.id }} </p> -->
                 </div>
@@ -126,13 +143,16 @@ const ReadBlogOverlay = () => {
                           </svg>
                         </div>
                       </div>
-                      <div class="overflow-y-scroll">
+                      <div class="overflow-y-scroll bg-orange-500" style="scrollbar-width:none">
                         <p
                           class="text-xs max-h-[30px] pl-1"
                         >Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum modi odio temporibus rerum expedita quasi sequi. Facere officiis totam hic? ipsum dolor sit amet consectetur adipisicing elit. Ipsa, inventore!</p>
                       </div>
                     </div>
                   </div>
+
+                  
+
                 </div>
               </div>
             </div>
@@ -166,12 +186,15 @@ const ReadBlogOverlay = () => {
                   </svg>
                 </div>
               </div>
-              <div class="w-full">
+              <div class="w-full flex bg-slate-50 border-black border-2 rounded-xl pl-2 outline-none hover:border-purple-700 hover:shadow-xl" >
                 <input
+                  @input="typeComment"
+                  v-model="userComment"
                   type="text"
                   placeholder="comment..."
-                  class="w-[100%] h-[35px] border-black border-2 rounded-xl pl-2 outline-none focus:border-purple-700 focus:shadow-xl"
+                  class="w-[95%] h-[35px] border-0 focus:ring-0"
                 />
+                <svg xmlns="http://www.w3.org/2000/svg"  @click="comment(post.data.id)"  v-if="finalComment " class="w-fit h-full pt-1 pr-1" width="25px" height="25px" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M29 3L3 15l12 2.5M29 3L19 29l-4-11.5M29 3L15 17.5"/></svg>
               </div>
               <div class="grid place-items-center">
                 <svg

@@ -8,8 +8,8 @@ let {event} = toRefs(props)
 <template>
     <!-- sm:w-[calc(50%-20px)] -->
     <div class="border shadow-gray-300 rounded hover:shadow-md  shadow-xl hover:shadow-green-300 sm:flex sm:flex-wrap mx-2 my-4 sm:max-h-[300px]">
-        <div> 
-            <div class="bg-slate-400 flex justify-between px-3 text-center mx-2">
+        <div class="w-full"> 
+            <div class="bg-slate-400 flex justify-between px-3 text-center  mx-2">
                 <p class="text-2xl font-bold text-center">{{event.Title}}</p>
                 <!-- <button class="bg-slate-300 p-2 text-green-500 rounded border hover:bg-green-600 hover:text-white">More Info</button> -->
              </div>

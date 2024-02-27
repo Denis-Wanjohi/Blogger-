@@ -22,11 +22,11 @@ let openBlog = (data) => {
 
 <template >
   <Head title="Blogs"></Head>
-  <div class="w-full h-screen overflow-y-scroll">
+  <div class="w-full h-screen overflow-y-scroll" style="scrollbar-width: none;">
     <section>
       <TopBlog></TopBlog>
     </section>
-    <section class="pb-20 w-full bg-red-500 overflow-y-auto">
+    <section class="pb-20 w-full bg-red-500 overflow-y-auto" style="scrollbar-width: none;">
       <div class="flex flex-wrap justify-evenly">
         <div class="md:w-[30%]" v-for="data in blogs.data" :key="data">
           <Blog :blog="data" @readBlog="openBlog"></Blog>

@@ -47,7 +47,7 @@ let submit = ()=>{
                         <option value="Science">Science</option>
                         <option value="Law">Law</option>
                         <option value="Education">Education</option>
-                        <option value="IT&Computer">IT & Computer</option>
+                        <option value="IT & Computer">IT & Computer</option>
                         <option value="Business">Business</option>
                         <option value="Media">Media</option>
                     </select>

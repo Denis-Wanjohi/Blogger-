@@ -15,7 +15,7 @@ let {user} = toRefs(props)
                 </div>
                 <div class="flex sm:w-3/4 mt-5 rounded sm:h-[40%] h-fit mx-auto bg-blue-600">
                     <div class="sm:w-[40%] sm:h-full w-[70px] h-[100px]  sm:rounded sm:grid sm:place-content-center sm:py-3 overflow-hidden bg-green-400">
-                        <img :src="user.profilePicture" class=" sm:w-[260px]  w-[60px]  mx-auto rounded-full  sm:rounded-br-[100px] sm:my-5"  alt="">
+                        <img :src="user.profilePicture ? cat.jpeg : user.profilePicture " class=" sm:w-[260px]  w-[60px]  mx-auto rounded-full  sm:rounded-br-[100px] sm:my-5"  alt="">
                     </div>
                     <div class="w-full bg-teal-100 grid place-items-center">
                         <div class="w-[90%] h-[70%] shadow-xl rounded-xl text-xl grid px-5">
