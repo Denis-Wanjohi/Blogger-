@@ -2,27 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AllEventsCollection;
 use App\Models\Events;
 use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventsController extends Controller
 {
-    public function event(){
+    public function index(){
         $events = Events::paginate(6);
-
-        return inertia('Layouts/EventLayout',['events'=>$events]);
+        return inertia('Layouts/EventLayout',['events'=>new AllEventsCollection($events)]);
     }
 
-    public function facultyBlogs(){
+    public function facultyEvents(){
         $events = Events::all();
-        $event = $events->where('faculty','=',request('faculty'));
+        $selectedEvents = $events->where('faculty','=',request('faculty'));
         return inertia('Layouts/EventLayout',[
-            'events' => $event
+            'events' => new AllEventsCollection($selectedEvents)
         ]);
     }
 
-    public function postEvent(){
+    public function getFacultyEvents(){
+        $events = Events::all();
+        $selectedEvents = $events->where('faculty','=',request('faculty'));
+        return inertia('Layouts/EventLayout',[
+            'events' => new AllEventsCollection($selectedEvents)
+        ]);
+    }
+
+    public function createEvent(){
         
         $event = request()->validate([
             'Title' => 'required',
@@ -35,9 +44,10 @@ class EventsController extends Controller
         ]);
 
         $event['banner'] = request('banner')->store('events','public');
+        $event['user_id'] = Auth::user()->id;
         
         Events::create($event);
 
-        return redirect('/');
+        return redirect('/events');
     }
 }

@@ -27,7 +27,6 @@ class BlogsController extends Controller
 
     public function getFacultyBlogs(){
         $blogs = Blogs::all();
-        // dd(request('faculty'));
         $selectedBlogs = $blogs->where('faculty','=',request('faculty'));
         return inertia('Layouts/Home',[
             'blogs' => new AllBlogsCollection($selectedBlogs),

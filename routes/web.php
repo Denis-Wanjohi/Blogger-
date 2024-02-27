@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogsController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -45,12 +46,13 @@ Route::group(['prefix' => '/'],function(){
     Route::post('blogs/{faculty}',[BlogsController::class,'facultyBlogs'])->name('facultyBlogs');
 });
 
-
-Route::get('/events',[EventsController::class,'event']);
-
 Route::group(['prefix' => '/events'],function(){
-    Route::post('/{faculty}',[EventsController::class,'facultyBlogs']);
+    Route::get('/',[EventsController::class,'index']);
+    Route::get('/{faculty}',[EventsController::class,'getFacultyEvents']);
+    Route::post('/{faculty}',[EventsController::class,'facultyEvents']);
+
 });
+
 
 // Route::group(['prefix' => 'profile'],function(){
 //     Route::get('/',function(){
@@ -59,8 +61,8 @@ Route::group(['prefix' => '/events'],function(){
 // });
 
 Route::group(['prefix' => 'profile'],function(){
-    Route::get('/',[ProfileController::class,'index']);
-})->middleware('auth');
+    Route::get('/',[ProfileController::class,'index'])->middleware(['auth', 'verified']);
+});
 
 Route::group(['prefix'=>'auth'],function(){
     Route::get('login',function(){
@@ -78,20 +80,16 @@ Route::group(['prefix'=>'auth'],function(){
 Route::group(['prefix' => 'post'],function(){
     Route::get('blog',function(){
         return inertia('Components/Post/PostBlog');
-    });
-    Route::post('/blog',[BlogsController::class,'postBlog']);
+    })->middleware('auth');
+    Route::post('/blog',[BlogsController::class,'postBlog'])->middleware('auth');
 
     Route::get('event',function(){
         return inertia('Components/Post/PostEvent');
-    });
-    Route::post('/event',[EventsController::class,'postEvent']);
-})->middleware('auth');
-
-Route::get('/post/blog',function(){
-    return inertia('Components/Post/PostBlog');
+    })->middleware('auth');
+    Route::post('/event',[EventsController::class,'createEvent'])->middleware('auth');
 });
 
-Route::get('/post/event',function(){
-    return inertia('Components/Post/PostEvent');
-});
+
+Route::post('/comment',[CommentsController::class,'create']);
+
 require __DIR__.'/auth.php';
