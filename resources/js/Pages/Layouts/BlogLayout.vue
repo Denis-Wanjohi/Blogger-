@@ -8,11 +8,12 @@ import ViewBlog from '../Components/Blogs/ViewBlog.vue'
 
 const props = defineProps({
   blogs: Object,
+  comments:Object
 })
 
 let showBlogOverLay = ref(false)
 let selectedBlog = ref(null)
-let { blogs} = toRefs(props)
+let { blogs,comments} = toRefs(props)
 
 let openBlog = (data) => {
   selectedBlog = data
@@ -50,6 +51,7 @@ let openBlog = (data) => {
         @closeOverLay=" showBlogOverLay = false"
         :class="[showBlogOverLay ? 'block' : 'hidden']"
         :post="selectedBlog"
+        :comments="comments"
       ></ViewBlog>
     </section>
   </div>

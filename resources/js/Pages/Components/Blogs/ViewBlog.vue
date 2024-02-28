@@ -3,9 +3,9 @@ import { router } from '@inertiajs/vue3'
 import { ref, toRefs } from 'vue'
 
 const emit = defineEmits(['CloseBlogOverLay'])
-const props = defineProps({ post: Object })
+const props = defineProps({ post: Object,comments:Object })
 
-let { post} = toRefs(props)
+let { post,comments} = toRefs(props)
 
 const ReadBlogOverlay = () => {
   emit('CloseBlogOverLay')
@@ -22,7 +22,8 @@ let cmt = null
 let  comment =(data)=>{
   console.log(data);
     let comment = finalComment.value
-    router.post('/comment',{comment,data})
+    router.post('/comment',{comment,data,preserveScroll: true})
+    userComment.value = ''
 }
 </script>
 
@@ -53,15 +54,15 @@ let  comment =(data)=>{
         <div class="w-1/2 h-full flex flex-col">
           <img :src="post.data.banner" class="h-full w-full" alt />
         </div>
-        <div class="w-1/2 h-[100%]">
-          <div class="flex flex-col">
+        <div class="w-1/2 h-[90%] bg-green-400">
+          <div class="flex flex-col h-fit">
             <p class="font-bold text-2xl text-center border-b border-b-black pb-2">{{post.data.mini_title}}</p>
             <!-- <p class="text-center font-bold text-xl my-2">who is that??...</p> -->
           </div>
-          <div class="w-[90%] mx-auto max-h-[100%] bg-green-400">
+          <div class="w-[90%] mx-auto h-[90%] ">
             <div
               id="one"
-              class="w-full min-h-[10%] h-fit overflow-y-scroll"
+              class="w-full min-h-[10%] h-[90%] overflow-y-scroll"
               style="scrollbar-width:none"
             >
               <div class="flex justify-between align-middle px-2 py-1 bg-red-200">
@@ -109,55 +110,61 @@ let  comment =(data)=>{
                   </svg>
                 </div>
               </div>
-              <div class="h-[100%] overflow-y-scroll bg-blue-400" style="scrollbar-width:none">
-                <div class="max-h-[200px] min-h-[100px] overflow-y-scroll pl-2" style="scrollbar-width:none">
-                  <p>{{ post.data.description}} </p>
+              <div class="max-h-[85%]  overflow-y-scroll" style="scrollbar-width:none">
+                <div class=" mb-3 overflow-y-scroll pl-2" style="scrollbar-width:none">
+                  <p><span class="pl-5"></span>{{ post.data.description}} </p>
                   <!-- <p>{{ $page.props.auth.user.id }} </p> -->
                 </div>
-                <div class="w-[100%] bg-green-400 h-[100px] overflow-y-auto">
-                  <div class="flex mt-1 border-t border-t-black bg-red-300 max-h-[70px]">
-                    <div>
-                      <img src="cat.jpeg" class="w-8 rounded-full ml-1" alt />
-                    </div>
-                    <div class="w-full">
-                      <div class="flex justify-between text-xs w-[100%] px-2">
-                        <p class="font-bold text-sm">
-                          Kim Kimanis
-                          <span class="font-normal text-xs">12:00 pm 12-02-2024</span>
-                        </p>
-                        <div>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="25px"
-                            height="25px"
-                            viewBox="0 0 24 24"
+                <div class="w-[100%]  h-[10%] overflow-y-auto" style="scrollbar-width:none">
+
+                  <div v-for="comment in comments.data">
+                 
+                    <div class="flex mt-1 border-t border-t-black  max-h-[70px]"  v-if="comment.blog_id === post.data.id" >
+                      <div>
+                        <img src="cat.jpeg" class="w-8 rounded-full ml-1" alt />
+                      </div>
+                      <div class="w-full">
+                        <div class="flex justify-between text-xs w-[100%] px-2">
+                          <p class="font-bold text-sm">
+                            {{comment.user.firstname}} {{comment.user.lastname}}
+                            <span class="font-normal text-xs">12:00 pm 12-02-2024</span>
+                          </p>
+                          <div>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="25px"
+                              height="25px"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div class="overflow-y-scroll" style="scrollbar-width:none">
+                          <p
+                            class="text-xs max-h-[50px] h-fit mb-1 pl-1"
                           >
-                            <path
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
-                            />
-                          </svg>
+                          <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum modi odio temporibus rerum expedita quasi sequi. Facere officiis totam hic? ipsum dolor sit amet consectetur adipisicing elit. Ipsa, inventore! -->
+                          {{ comment.comments }}
+                          </p>
                         </div>
                       </div>
-                      <div class="overflow-y-scroll bg-orange-500" style="scrollbar-width:none">
-                        <p
-                          class="text-xs max-h-[30px] pl-1"
-                        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum modi odio temporibus rerum expedita quasi sequi. Facere officiis totam hic? ipsum dolor sit amet consectetur adipisicing elit. Ipsa, inventore!</p>
-                      </div>
                     </div>
-                  </div>
-
+                </div>
                   
 
                 </div>
               </div>
             </div>
 
-            <div class="w-full h-[40px] flex justify-between">
+            <div class="w-full h-[40px]  flex justify-between">
               <div class="flex">
                 <div id="like" class="grid place-items-center">
                   <svg

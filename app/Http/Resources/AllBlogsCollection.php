@@ -32,7 +32,13 @@ class AllBlogsCollection extends ResourceCollection
                     'username' => $blogs->user->username,
                     'faculty' => $blogs->user->faculty,
                     'profilePicture' => $blogs->user->profilePicture 
-                ]
+                ],
+                // 'comments'=> [
+                //     'id' => $blogs->comments->id,
+                //     'user_id'=> $blogs->comments->user_id,
+                //     'blog_id'=> $blogs->comments->blog_id,
+                //     'comments'=> $blogs->comments->comments,
+                // ]
             ];
         });
     }
