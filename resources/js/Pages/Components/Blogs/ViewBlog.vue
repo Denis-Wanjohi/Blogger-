@@ -3,7 +3,7 @@ import { router } from '@inertiajs/vue3'
 import { ref, toRefs } from 'vue'
 
 const emit = defineEmits(['CloseBlogOverLay'])
-const props = defineProps({ post: Object,comments:Object })
+const props = defineProps({ post: Object,comments:Object,likes:Object })
 
 let { post,comments} = toRefs(props)
 
@@ -23,7 +23,16 @@ let  comment =(data)=>{
   console.log(data);
     let comment = finalComment.value
     router.post('/comment',{comment,data,preserveScroll: true})
-    userComment.value = ''
+    userComment.value = null
+    finalComment.value = null
+}
+let liked = ref(false)
+let like=(id,value)=>{
+  router.post('/like',{id,value,preserveScroll:true})
+}
+let disliked = ref(false)
+let dislike=(id,value)=>{
+  router.post('/dislike',{id,value,preserveScroll:true})
 }
 </script>
 
@@ -168,23 +177,51 @@ let  comment =(data)=>{
               <div class="flex">
                 <div id="like" class="grid place-items-center">
                   <svg
+                    v-if="liked  === false"
                     xmlns="http://www.w3.org/2000/svg"
                     width="25px"
-                    height="25px"
+                    height="25px" 
                     viewBox="0 0 48 48"
+                    @click.prevent="liked = true,like(post.data.id,0)"
                   >
                     <path
                       fill="currentColor"
                       d="M24.844 3.87c.427-1.165 1.735-2.37 3.383-1.881c1.651.489 2.726 1.668 3.364 3.097c.624 1.396.857 3.075.87 4.764c.023 2.72-.525 5.71-1.24 8.15h5.04c3.463 0 5.977 3.292 5.066 6.632L37.993 36.85a9.25 9.25 0 0 1-11.079 6.56l-14.07-3.37a7.25 7.25 0 0 1-5.295-5.107L6.315 30.5c-.759-2.727.79-5.417 3.205-6.525c6.324-2.902 9.707-7.127 12.357-12.526c.84-1.71 1.455-3.409 2.289-5.715c.21-.58.433-1.198.678-1.864m2.583.544a.65.65 0 0 0-.236.317c-.231.63-.447 1.225-.652 1.793c-.84 2.325-1.512 4.182-2.417 6.027c-2.831 5.766-6.578 10.493-13.56 13.696c-1.46.67-2.222 2.203-1.838 3.582l1.233 4.433a4.75 4.75 0 0 0 3.47 3.346l14.07 3.37a6.75 6.75 0 0 0 8.084-4.787l3.334-12.217a2.75 2.75 0 0 0-2.653-3.474H29.5a1.25 1.25 0 0 1-1.175-1.677c.884-2.432 1.662-5.935 1.637-8.953c-.012-1.511-.226-2.806-.654-3.765c-.414-.926-.996-1.484-1.791-1.72c-.013-.003-.017-.003-.022-.002a.195.195 0 0 0-.068.03"
                     />
                   </svg>
+
+                  <svg 
+                  v-if="liked  === true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25px" height="25px" 
+                    viewBox="0 0 30 30"
+                    @click.prevent="liked = false,like(post.data.id,1)">
+                    <rect width="28" height="28" fill="none"  />
+                    <path fill="black"  d="M16.124 1.116c-.884-.247-1.58.38-1.82.988l-.26.66c-2.006 5.09-3.837 9.74-8.612 12.157c-1.101.558-1.868 1.765-1.648 3.086l.416 2.496a3.75 3.75 0 0 0 2.669 2.99l7.69 2.196a6.75 6.75 0 0 0 8.469-5.146l1.228-6.046A3.75 3.75 0 0 0 20.58 10h-2.167c.345-1.503.504-3.217.346-4.73c-.184-1.77-.858-3.659-2.636-4.154" />
+                  </svg>
                 </div>
                 <div id="dislike" class="grid place-items-center">
+
+
                   <svg
+                    v-if="disliked === true"
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="25px" 
+                    height="25px" 
+                    @click.prevent="disliked = false,dislike(post.data.id,1)"
+                    viewBox="0 0 24 24">
+                    <rect width="24" height="24" fill="none" />
+                    <path fill="black" d="M15.056 14.183c.46 1.427.693 2.676.693 3.753c0 2.398-.939 4.247-2.5 4.247c-.8 0-1.078-.45-1.383-1.546l-.27-1.022c-.1-.358-.276-.97-.526-1.83a.247.247 0 0 0-.03-.066l-2.866-4.485a5.885 5.885 0 0 0-2.855-2.327l-1.257-.481A1.75 1.75 0 0 1 2.97 8.458l.686-3.538a2.25 2.25 0 0 1 1.673-1.758l8.25-2.021a4.75 4.75 0 0 1 5.733 3.44l1.574 6.172a2.75 2.75 0 0 1-2.665 3.43z" />
+                  </svg>
+
+
+                  <svg
+                    v-if="disliked === false"
                     xmlns="http://www.w3.org/2000/svg"
                     width="25px"
                     height="25px"
                     viewBox="0 0 16 16"
+                    @click.prevent="disliked = true,dislike(post.data.id,0)"
                   >
                     <path
                       fill="currentColor"

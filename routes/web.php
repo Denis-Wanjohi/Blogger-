@@ -91,5 +91,7 @@ Route::group(['prefix' => 'post'],function(){
 
 
 Route::post('/comment',[CommentsController::class,'create']);
+Route::post('/like',[BlogsController::class,'like']);
+Route::post('/dislike',[BlogsController::class,'dislike']);
 
 require __DIR__.'/auth.php';

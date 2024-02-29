@@ -30,12 +30,16 @@ let props = defineProps({
     },
     comments:{
       type:Object,
+    },
+    likes:{
+      type:Object,
     }
  
 });
 let data = toRefs(props)
 let blogs = data.blogs
 let comments = data.comments
+let likes = data.likes
 
 // let {user} = toRefs(blogs)
 
@@ -76,7 +80,7 @@ let selectedFaculty = (data)=>{
     <div>
       <!-- <TabLinks :blogPath="blogs.blogs.path"></TabLinks> -->
       <div>
-        <BlogLayout @readBlog="BlogOverlay" :blogs="blogs" :comments="comments"  />
+        <BlogLayout @readBlog="BlogOverlay" :blogs="blogs" :comments="comments" :likes="likes"  />
       </div>
     </div>
   </div>

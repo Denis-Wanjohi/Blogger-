@@ -33,6 +33,9 @@ class AllBlogsCollection extends ResourceCollection
                     'faculty' => $blogs->user->faculty,
                     'profilePicture' => $blogs->user->profilePicture 
                 ],
+                'likes' =>[
+                    'id' => $blogs->likes->id
+                ]
                 // 'comments'=> [
                 //     'id' => $blogs->comments->id,
                 //     'user_id'=> $blogs->comments->user_id,

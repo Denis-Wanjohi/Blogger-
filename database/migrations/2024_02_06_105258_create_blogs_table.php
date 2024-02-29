@@ -18,6 +18,16 @@ return new class extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
+            // $table->unsignedBigInteger('comment_id')->nullable();
+            // $table->foreign('comment_id')
+            //     ->references('id')
+            //     ->on('comments')
+            //     ->cascadeOnDelete();
+            // $table->unsignedBigInteger('likes_id')->nullable();
+            // $table->foreign("likes_id")
+            //     ->references('id')
+            //     ->on('likes')
+            //     ->cascadeOnDelete();
             $table->string('Title');
             $table->string('mini_title');
             $table->text('description');
