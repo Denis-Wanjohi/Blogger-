@@ -8,7 +8,7 @@ import ViewBlog from '../Components/Blogs/ViewBlog.vue'
 
 const props = defineProps({
   blogs: Object,
-  comments:Object
+  comments:Object,
   likes:Object
 })
 

@@ -17,4 +17,7 @@ class Comments extends Model
     public function blogs(){
         return $this->belongsTo(Blogs::class);
     }
+    // public function likes(){
+    //     return $this->hasMany(Likes::class);
+    // }
 }

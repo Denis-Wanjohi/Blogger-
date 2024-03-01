@@ -33,9 +33,17 @@ class AllBlogsCollection extends ResourceCollection
                     'faculty' => $blogs->user->faculty,
                     'profilePicture' => $blogs->user->profilePicture 
                 ],
-                'likes' =>[
-                    'id' => $blogs->likes->id
-                ]
+                'likes' =>$blogs->likes->map(function($likes){
+                    return [
+                        'id' => $likes->id,
+                        'user_id' => $likes->user_id,
+                        'blog_id' => $likes->blogs_id,
+                        'likes' => $likes->likes,
+                        'dislikes' => $likes->dislikes,
+                        'liked' => $likes->liked,
+                        'disliked' => $likes->disliked
+                    ];
+                }),
                 // 'comments'=> [
                 //     'id' => $blogs->comments->id,
                 //     'user_id'=> $blogs->comments->user_id,

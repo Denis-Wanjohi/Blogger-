@@ -33,6 +33,9 @@ let props = defineProps({
     },
     likes:{
       type:Object,
+    },
+    liked:{
+      type:Boolean
     }
  
 });

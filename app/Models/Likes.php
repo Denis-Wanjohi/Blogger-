@@ -13,6 +13,6 @@ class Likes extends Model
         return $this->belongsTo(User::class);
     }
     public function blog(){
-        return $this->belongsTo(Blogs::class);
+        return $this->belongsTo(Blogs::class,'blog_id');
     }
 }

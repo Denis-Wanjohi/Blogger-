@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
            $table->unsignedBigInteger('user_id')->nullable();
            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->unsignedBigInteger('blog_id');
-            $table->foreign('blog_id')->references('id')->on('blogs')->cascadeOnDelete();
+            $table->unsignedBigInteger('blogs_id');
+            $table->foreign('blogs_id')->references('id')->on('blogs')->cascadeOnDelete();
             $table->integer('likes');
+            $table->boolean('liked');
             $table->integer('dislikes');
+            $table->boolean('disliked');
             $table->timestamps();
         });
     }
