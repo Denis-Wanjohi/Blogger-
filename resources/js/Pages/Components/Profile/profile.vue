@@ -2,9 +2,9 @@
 import {  toRefs } from "vue";
 import HeadNav from "../../Shared/HeadNav.vue";
 const props = defineProps({
-    user:Object
+    user:Object,blogs:String,events:String
 })
-let {user} = toRefs(props)
+// let {user,blog} = toRefs(props)
 </script>
 <template>
     <HeadNav/>
@@ -22,23 +22,23 @@ let {user} = toRefs(props)
                             <table >
                                 <tr>
                                     <td>
-                                        <p> <span class="font-bold">Firstname</span> : {{user.firstname}}</p>
+                                        <p> <span class="font-bold">Firstname</span> : {{user.data.firstname}}</p>
                                     </td>
                                     <td>
-                                        <p><span class="font-bold">Lastname</span> : {{user.lastname}}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><span class="font-bold">Username</span> : {{user.username}}</p>
-                                    </td>
-                                    <td>
-                                        <p><span class="font-bold">Faculty</span> : {{user.faculty}}</p>
+                                        <p><span class="font-bold">Lastname</span> : {{user.data.lastname}}</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <p><span class="font-bold">Email</span>:  {{ user.email }}</p>
+                                        <p><span class="font-bold">Username</span> : {{user.data.username}}</p>
+                                    </td>
+                                    <td>
+                                        <p><span class="font-bold">Faculty</span> : {{user.data.faculty}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p><span class="font-bold">Email</span>:  {{ user.data.email }}</p>
                                     </td>
                                 </tr>
                             </table>
@@ -47,17 +47,17 @@ let {user} = toRefs(props)
                 </div>
                 <div class="w-3/4 bg-teal-200 h-[50%] mx-auto mt-3" >
                     <div class="w-full px-5 py-3 h-1/2 bg-teal-200">
-                        <div class="w-full h-full py-3 px-2 bg-teal-200 overflow-y-scroll">
+                        <div class="w-full h-full py-3 px-2 bg-teal-200 overflow-y-scroll" style="scrollbar-width: none;">
                             <span class="font-bold ">Bio</span><br>
                             <hr>
                             <p>
-                                {{ user.bio }}
+                                {{ user.data.id }}
                                 <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint omnis esse veritatis rerum nisi quis voluptatum delectus ratione corrupti natus. Libero deleniti pariatur quod eos itaque magni excepturi quasi soluta.30 -->
                             </p>
                         </div>
                     </div>
                     <div class="flex justify-around py-3 ">
-                        <div class="w-[100px] text-center min-h-[100px] rounded-xl bg-blue-500 flex flex-col justify-around">
+                        <!-- <div class="w-[100px] text-center min-h-[100px] rounded-xl bg-blue-500 flex flex-col justify-around">
                             <p class="text-center text-5xl font-bold">4</p>
                             <p class="font-bold">FOLLOWERS</p>
                         </div>
@@ -65,15 +65,15 @@ let {user} = toRefs(props)
                         <div class="w-[100px] text-center min-h-[100px] rounded-xl bg-indigo-500 flex flex-col justify-around">
                             <p class="text-center text-5xl font-bold">4</p>
                             <p class="font-bold">FOLLOWING</p>
-                        </div>
+                        </div> -->
 
                         <div class="w-[100px] text-center min-h-[100px] rounded-xl bg-cyan-500 flex flex-col justify-around">
-                            <p class="text-center text-5xl font-bold">4</p>
+                            <p class="text-center text-5xl font-bold">{{blogs}}</p>
                             <p class="font-bold">BLOGS</p>
                         </div>
 
                         <div class="w-[100px] text-center min-h-[100px] rounded-xl bg-violet-500 flex flex-col justify-around">
-                            <p class="text-center text-5xl font-bold">4</p>
+                            <p class="text-center text-5xl font-bold">{{events}}</p>
                             <p class="font-bold">EVENTS</p>
                         </div>
                     </div>

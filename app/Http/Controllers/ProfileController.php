@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Resources\UserCollection;
+use App\Models\Blogs;
+use App\Models\Events;
+use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -27,8 +31,12 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
     public function index(){
+            $user = User::find(Auth::user()->id)::with(Blogs::class);
+            // dd($user);
         return inertia('Components/Profile/profile',[
-            'user' => Auth::user()
+            'user' => new UserCollection($user),
+            'blogs' =>  Blogs::where('user_id','=',Auth::user()->id)->count(),
+            'events' =>  Events::where('user_id','=',Auth::user()->id)->count()
         ]);
     }
 

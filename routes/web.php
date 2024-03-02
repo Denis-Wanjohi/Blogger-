@@ -54,11 +54,7 @@ Route::group(['prefix' => '/events'],function(){
 });
 
 
-// Route::group(['prefix' => 'profile'],function(){
-//     Route::get('/',function(){
-//         return inertia('Components/Profile/profile');
-//     });
-// });
+
 
 Route::group(['prefix' => 'profile'],function(){
     Route::get('/',[ProfileController::class,'index'])->middleware(['auth', 'verified']);
