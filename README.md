@@ -3,7 +3,7 @@
 still in progress  ........
 
 
-## Installation
+<!-- ## Installation
 
 clone the project:
 git clone git@github.com:Denis-Wanjohi/Blogger-.git
@@ -14,5 +14,5 @@ npm install
 
 php artisan serve  
 
-npm run dev
+npm run dev -->
 

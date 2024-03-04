@@ -33,11 +33,11 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 
 Route::group(['prefix' => '/'],function(){
@@ -56,9 +56,21 @@ Route::group(['prefix' => '/events'],function(){
 
 
 
-Route::group(['prefix' => 'profile'],function(){
+Route::group(['prefix' => 'profile/'],function(){
     Route::get('/',[ProfileController::class,'index'])->middleware(['auth', 'verified']);
+    Route::get('bio',function(){
+        return inertia('Components/Profile/userBio');
+        // return inertia('Components/Auth/Login');
+
+    });
+    Route::get('editBio',function(){
+        return inertia('Components/Profile/editBio');
+    });
+    Route::post('/profileUpdate',[ProfileController::class,'profileUpdate']);
+    Route::post('/profileEdit',[ProfileController::class,'profileEdit']);
+
 });
+
 
 Route::group(['prefix'=>'auth'],function(){
     Route::get('login',function(){

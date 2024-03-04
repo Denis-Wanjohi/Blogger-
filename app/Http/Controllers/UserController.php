@@ -10,6 +10,7 @@ use League\MimeTypeDetection\FinfoMimeTypeDetector;
 class UserController extends Controller
 {
     public function register(){
+        dd("user controller");
         $user = request()->validate([
             'firstname' => 'required',
             'lastname' => 'required',
@@ -20,7 +21,8 @@ class UserController extends Controller
      
         $newUser = User::create($user);
         Auth::login($newUser);
-        return redirect('/');
+        return inertia("/Profile/Bio");
+        // return redirect('/');
 
     }
 

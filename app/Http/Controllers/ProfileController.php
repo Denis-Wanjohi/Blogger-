@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class ProfileController extends Controller
 {
@@ -31,13 +32,48 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
     public function index(){
-            $user = User::find(Auth::user()->id)::with(Blogs::class);
+            $user = User::find(Auth::user()->id);
             // dd($user);
         return inertia('Components/Profile/profile',[
-            'user' => new UserCollection($user),
+            // 'user' => new UserCollection($user),
+            'user' => $user,
             'blogs' =>  Blogs::where('user_id','=',Auth::user()->id)->count(),
             'events' =>  Events::where('user_id','=',Auth::user()->id)->count()
         ]);
+    }
+    //update
+    public function profileUpdate(){
+        $bio = request()->validate([
+            'bio' => 'required',
+            'faculty' => 'required'
+        ]);
+        if(request()->hasFile('profilePicture')){
+            $file = request()->file('profilePicture')->store('profiles','public');
+            $profile = '/storage/'.$file;
+        }
+
+        User::where('id','=',Auth::user()->id)->update([
+            'bio' => $bio['bio'],
+            'faculty' => $bio['faculty'],
+            'profilePicture' => $profile,
+        ]);
+        return redirect('/');
+    }
+    //edit
+    public function profileEdit(){
+        $bio = request()->validate([
+            'bio' => 'required',
+        ]);
+        if(request()->hasFile('profilePicture')){
+            $file = request()->file('profilePicture')->store('profiles','public');
+            $profile = '/storage/'.$file;
+        }
+
+        User::where('id','=',Auth::user()->id)->update([
+            'bio' => $bio['bio'],
+            'profilePicture' => $profile,
+        ]);
+        return redirect('/profile');
     }
 
     /**
@@ -55,6 +91,11 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.edit');
     }
+
+    public function bio(){
+        return inertia('Components/Profile/bio');
+    }
+
 
     /**
      * Delete the user's account.

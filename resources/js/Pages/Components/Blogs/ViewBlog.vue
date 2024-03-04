@@ -61,7 +61,7 @@ let  comment =(data)=>{
 //   console.log("the post has been liked")
 // })
 
-const page  = usePage().props.likes
+// const page  = usePage().props.likes
 // let isliked = computed(function(likes){
 //   // return(likes)=>{
 //     // return likes.user_id === router.page.props.auth.user.id &&  likes.blogs_id === post.id && likes.liked === 1
@@ -107,11 +107,12 @@ const page  = usePage().props.likes
               id="one"
               class="w-full min-h-[10%] h-[90%] overflow-y-scroll"
               style="scrollbar-width:none"
+              
             >
-              <div class="flex justify-between align-middle px-2 py-1 bg-red-200">
+              <div class="flex justify-between align-middle px-2 py-1 bg-green-500">
                 <div class="flex">
                   <div>
-                    <img src="/cat.jpeg" class="w-10 rounded-full" />
+                    <img :src=post.data.user.profilePicture class="w-10 h-10 rounded-full" />
                   </div>
                   <div class="px-2">
                     <p class="font-bold flex">
@@ -184,7 +185,7 @@ const page  = usePage().props.likes
                  
                     <div class="flex mt-1 border-t border-t-black  max-h-[70px]"  v-if="comment.blog_id === post.data.id" >
                       <div>
-                        <img src="cat.jpeg" class="w-8 rounded-full ml-1" alt />
+                        <img :src=comment.user.profilePicture class="w-10 h-10 mt-1 rounded-full ml-1" alt />
                       </div>
                       <div class="w-full">
                         <div class="flex justify-between text-xs w-[100%] px-2">

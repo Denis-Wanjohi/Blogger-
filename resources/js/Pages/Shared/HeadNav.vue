@@ -55,8 +55,8 @@ let logout =()=>{
           class="pl-1 outline-none border-0 border-b-black border-b-2 rounded focus:border-b-purple-900 max-h-8"
         />
       </div>
-      <div class="ml-5 cursor-pointer w-full"  >
-        <img src="/cat.jpeg" alt class="w-10 h-10 rounded-full shadow-xl" @click.prevent="menu" v-if="$page.props.auth.user"/>
+      <div class="ml-5 cursor-pointer w-full">
+        <img :src=$page.props.auth.user.profilePicture alt class="w-10 h-10 rounded-full shadow-xl" @click.prevent="menu" v-if="$page.props.auth.user"/>
         <div v-else>
                 <Link
                     :href="route('login')"
@@ -91,11 +91,11 @@ let logout =()=>{
           />
         </svg>
       </span>
-      <div class="flex ml-4 mt-2">
-        <img src="/cat.jpeg" class="w-10 rounded-full" />
+      <div class="flex ml-4 mt-2" v-if=$page.props.auth.user >
+        <img :src=$page.props.auth.user.profilePicture class="w-10 rounded-full" />
         <div class="flex flex-col ml-5">
-          <!-- <span class="font-bold">{{$page.props.user.firstname}} {{ $page.props.user.lastname }}</span> -->
-          <!-- <span class="text-sm">{{ $page.props.user.email }}</span> -->
+          <span class="font-bold">{{$page.props.auth.user.firstname}} {{ $page.props.auth.user.lastname }}</span>
+          <span class="text-sm">{{ $page.props.auth.user.email }}</span>
         </div>
       </div>
       <hr class="border-blue-900 my-4" />
