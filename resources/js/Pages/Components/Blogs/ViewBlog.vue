@@ -71,8 +71,8 @@ let  comment =(data)=>{
 </script>
 
 <template>
-  <div v-if="post">
-    <div class="bg-zinc-300 rounded-t-3xl w-[90%] h-[100%] mx-auto">
+  <div v-if="post" >
+    <div class="bg-slate-300 sm:rounded-t-3xl sm:w-[90%] h-screen mx-auto">
       <div class="border-b border-black flex justify-between px-5 py-2">
         <div class="text-red cursor-pointer" @click.prevent="event => $emit('closeOverLay')">
           <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24">
@@ -88,16 +88,16 @@ let  comment =(data)=>{
             </g>
           </svg>
         </div>
-        <div class="text-6xl font-mono font-bold">{{ post.data.Title }}</div>
+        <div class="sm:text-6xl text-3xl font-mono font-extrabold">{{ post.data.Title }}</div>
         <div>
           <!-- <span class="font-bold">Share</span> -->
         </div>
       </div>
-      <div class="w-full h-[90%] my-2 px-2 flex">
-        <div class="w-1/2 h-full flex flex-col">
+      <div class="w-full h-[90%] my-2 px-2 flex sm:flex-row flex-col">
+        <div class="sm:w-1/2 h-full flex flex-col">
           <img :src="post.data.banner" class="h-full w-full" alt />
         </div>
-        <div class="w-1/2 h-[90%] bg-green-400">
+        <div class="sm:w-1/2 h-[90%] bg-green-400">
           <div class="flex flex-col h-fit">
             <p class="font-bold text-2xl text-center border-b border-b-black pb-2">{{post.data.mini_title}}</p>
             <!-- <p class="text-center font-bold text-xl my-2">who is that??...</p> -->
@@ -117,7 +117,7 @@ let  comment =(data)=>{
                   <div class="px-2">
                     <p class="font-bold flex">
                       {{post.data.user.firstname}} {{ post.data.user.lastname }}
-                      <svg
+                      <!-- <svg
                       v-if="$page.props.auth.user && post.data.user_id !== $page.props.auth.user.id" 
                         xmlns="http://www.w3.org/2000/svg"
                         width="25px"
@@ -128,15 +128,15 @@ let  comment =(data)=>{
                           fill="currentColor"
                           d="M12 10a2 2 0 0 0-2 2a2 2 0 0 0 2 2c1.11 0 2-.89 2-2a2 2 0 0 0-2-2"
                         />
-                      </svg>
+                      </svg> -->
                       <div v-if="$page.props.auth.user">
-                        <span class="text-sm font-bold mt-1" v-if="post.data.user_id !== $page.props.auth.user.id"  >Follow</span>
+                        <!-- <span class="text-sm font-bold mt-1" v-if="post.data.user_id !== $page.props.auth.user.id"  >Follow</span> -->
                       </div>
                     </p>
                     <p class="text-xs">12:00pm {{post.data.created_at}}</p>
                   </div>
                 </div>
-                <div>
+                <!-- <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="25px"
@@ -144,15 +144,16 @@ let  comment =(data)=>{
                     viewBox="0 0 24 24"
                   >
                     <path
-                      fill="none"
+                      fill="red"
                       stroke="currentColor"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
                       d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
                     />
+                    
                   </svg>
-                </div>
+                </div> -->
               </div>
               <div class="max-h-[85%]  overflow-y-scroll" style="scrollbar-width:none">
                 <div class=" mb-3 overflow-y-scroll pl-2" style="scrollbar-width:none">

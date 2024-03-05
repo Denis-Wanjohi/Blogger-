@@ -60,14 +60,14 @@ let logout =()=>{
         <div v-else>
                 <Link
                     :href="route('login')"
-                    class="font-semibold text-gray-600 bg-blue-300 p-1.5 rounded-l hover:bg-blue-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                    class="font-semibold text-gray-600 bg-blue-700 p-1.5 rounded-l hover:bg-blue-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                     >Log in</Link
                 >
 
                 <Link
                     
                     :href="route('register')"
-                    class="ms-4 font-semibold  bg-blue-300 p-1.5 rounded-r hover:bg-blue-500 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                    class="ms-4 font-semibold  hidden sm:block  bg-blue-700 p-1.5 rounded-r hover:bg-blue-500 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                     >Register</Link
                 >
             

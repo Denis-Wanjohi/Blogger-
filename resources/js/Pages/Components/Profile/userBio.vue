@@ -26,11 +26,11 @@ watch(()=>form.profilePicture,(a,b)=>{
 
 <template >
     <HeadNav></HeadNav>
-    <div class="sm:w-3/4 w-[100%] h-[90%] mx-auto bg-sky-200 shadow border rounded-xl ">
+    <div class="sm:w-3/4 w-[100%] h-[90%] mx-auto bg-sky-200 shadow border rounded-xl mt-10   pt-10 ">
         <form @submit.prevent="submit">
-            <div>
+            <!-- <div>
                 <img src="/cat.jpeg" class="max-w-[200px] max-h-[200px]  rounded-full mx-auto my-3" alt="">
-            </div>
+            </div> -->
             <div class="flex  w-1/2 mx-auto">
                 <div class="flex">
                     <label for="profilePicture" class="pr-2 font-bold text-lg">Profile:</label>

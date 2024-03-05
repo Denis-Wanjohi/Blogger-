@@ -24,21 +24,24 @@ let submit = ()=>{
         <div class="sm:w-[90%] sm:h-[90%] sm:my-5  shadow border sm:rounded-xl mx-auto bg-teal-500 ">
             <p class="text-3xl font-bold text-center shadow  sm:hidden">POST BLOG</p>
             
-        <form action="" @submit.prevent="submit" class=" h-[90%] my-10 text-center pt-5 py-4 sm:w-3/4  w-full mx-auto flex flex-col justify-between bg-red-300">
-            <div class="flex sm:flex-row flex-col sm:w-3/4 mx-auto justify-between">
+        <form action="" @submit.prevent="submit" class=" h-[90%] my-10 text-center pt-5 py-4 sm:w-3/4  w-full mx-auto flex flex-col justify-between bg-red-300 px-2">
+            <div class="flex sm:flex-row flex-col sm:w-3/4  w-full mx-auto justify-between">
                 <div class="flex flex-col sm:w-[70%] w-full  mx-auto ">
                     <label for="title" class="sm:text-start mb-2 ">Title</label>
                     <input type="text" name="title" v-model="form.title" class="w-full  mx-auto min-h-[40px] pl-2 rounded-xl outline-none border-0 focus:shadow-blue-800 shadow-lg border-b">
+                    <p class="text-sm text-red-700">{{ $page.props.errors.title }}</p>
                 </div>
                 <div class="flex flex-col sm:w-[70%] sm:ml-3 w-full  mx-auto ">
                     <label for="mini_title" class="sm:text-start mb-2 ">Mini-Title</label>
                     <input type="text" name="mini_title" v-model="form.mini_title" class="w-full  mx-auto min-h-[40px] pl-2 rounded-xl outline-none border-0 focus:shadow-blue-800 shadow-lg border-b">
+                    <p class="text-sm text-red-700">{{ $page.props.errors.mini_title }}</p>
+                    
                 </div>
             </div>
             <div class="flex sm:flex-row flex-col sm:w-3/4 mx-auto justify-between">
                 <div class="flex flex-col sm:w-3/4 w-full mx-auto">
                     <label for="banner" class="sm:text-start mb-2 ">Banner</label>
-                    <input type="file" name="banner" @input="form.banner = $event.target.files[0]"  class="w-full bg-white pt-2 mx-auto min-h-[40px] pl-2 rounded-xl outline-none border-0 focus:shadow-blue-800 shadow-lg border-b">
+                    <input type="file"  required name="banner" @input="form.banner = $event.target.files[0]"  class="w-full bg-white pt-2 mx-auto min-h-[40px] pl-2 rounded-xl outline-none border-0 focus:shadow-blue-800 shadow-lg border-b">
                 </div>
                 <div class="flex flex-col sm:w-3/4 sm:ml-3 w-full mx-auto">
                     <label for="faculty" class="sm:text-start mb-2 ">Faculty</label>
@@ -51,11 +54,14 @@ let submit = ()=>{
                         <option value="Business">Business</option>
                         <option value="Media">Media</option>
                     </select>
+                    <p class="text-sm text-red-700">{{ $page.props.errors.faculty }}</p>
+
                 </div>
             </div>
             <div class="flex flex-col sm:w-3/4 w-full mx-auto">
                 <label for="description" class="sm:text-start mb-2 ">Description</label>
                 <textarea name="description" v-model="form.description" id="" cols="30" rows="10" class="border-2 border-black rounded-lg min-h-[200px] max-h-[250px]"></textarea>
+                <p class="text-sm text-red-700">{{ $page.props.errors.description }}</p>
             </div>
             
             <div>

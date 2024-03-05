@@ -26,7 +26,7 @@ let openBlog = (data) => {
   <Head title="Blogs"></Head>
   <div class="w-full h-screen overflow-y-scroll" style="scrollbar-width: none;">
     <section>
-      <TopBlog></TopBlog>
+      <TopBlog :blogs="blogs.data" @readBlog="openBlog"></TopBlog>
     </section>
     <section class="pb-20 w-full bg-red-500 overflow-y-auto" style="scrollbar-width: none;">
       <div class="flex flex-wrap justify-evenly">
