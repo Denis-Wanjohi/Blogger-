@@ -2,22 +2,11 @@
 import { ref,computed, onMounted ,onBeforeUnmount} from 'vue';
 
 const props = defineProps({blogs:Object})
-let blogNumber = ref(0);
+let blogNumber = ref(Math.floor(Math.random()*props.blogs.length));
     const updateValue = () => {
         blogNumber.value = Math.floor(Math.random()*props.blogs.length) 
     };
     setInterval(updateValue, 4000);
-
-
-    // On component mount, start the interval
-    //onMounted(() => {
-    //   console.log(blogNumber.value)
-    //});
-
-    // // On component destroy, clear the interval
-    // onBeforeUnmount(() => {
-    //   clearInterval(intervalID);
-    // });
 
 </script>
 <template>

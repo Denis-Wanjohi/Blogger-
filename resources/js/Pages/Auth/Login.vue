@@ -89,6 +89,18 @@ const submit = () => {
                     Log in
                 </PrimaryButton>
             </div>
+            <div class="mt-2 text-center">
+                <span class="text-sm">
+                    New member to the community? 
+                    <Link
+                        v-if="canResetPassword"
+                        :href="route('register')"
+                        class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                        Register
+                    </Link>
+                </span>
+            </div>
         </form>
     </GuestLayout>
 </template>

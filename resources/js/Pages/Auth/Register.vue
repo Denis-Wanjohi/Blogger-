@@ -29,8 +29,8 @@ const submit = () => {
         <form @submit.prevent="submit">
             <!--  -->
             <div>
-                <InpultLabel for="firstname" value="Firstname" />
-
+                <!-- <InpultLabel for="firstname" value="bhdhdFirstname" /> -->
+                <Label class="text-sm">Firstname</Label>
                 <TextInput
                     id="firstname"
                     type="text"

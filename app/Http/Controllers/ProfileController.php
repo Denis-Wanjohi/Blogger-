@@ -50,7 +50,10 @@ class ProfileController extends Controller
         if(request()->hasFile('profilePicture')){
             $file = request()->file('profilePicture')->store('profiles','public');
             $profile = '/storage/'.$file;
+        }else{
+            $profile = User::find(Auth::user()->id)->profilePicture;
         }
+
 
         User::where('id','=',Auth::user()->id)->update([
             'bio' => $bio['bio'],
@@ -67,6 +70,8 @@ class ProfileController extends Controller
         if(request()->hasFile('profilePicture')){
             $file = request()->file('profilePicture')->store('profiles','public');
             $profile = '/storage/'.$file;
+        }else{
+            $profile = User::find(Auth::user()->id)->profilePicture;
         }
 
         User::where('id','=',Auth::user()->id)->update([

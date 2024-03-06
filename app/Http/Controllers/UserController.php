@@ -10,7 +10,7 @@ use League\MimeTypeDetection\FinfoMimeTypeDetector;
 class UserController extends Controller
 {
     public function register(){
-        dd("user controller");
+        // dd("user controller");
         $user = request()->validate([
             'firstname' => 'required',
             'lastname' => 'required',

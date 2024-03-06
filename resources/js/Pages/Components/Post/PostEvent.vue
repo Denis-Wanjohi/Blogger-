@@ -80,7 +80,7 @@ let submit = ()=>{
                         </div> -->
                         <div class="flex flex-col sm:w-3/4 w-full mx-auto">
                             <label for="username" class="sm:text-start mb-2 ">more info...</label>
-                            <textarea name="info" v-model="form.info" id="" cols="30" rows="10" class="border-2 mx-1 border-black rounded-lg min-h-[100px] max-h-[150px] p-1 font-mono" placeholder="write something . . ."></textarea>
+                            <textarea name="info" v-model="form.info" id="" cols="30" rows="10" class="border-2 mx-1k border-black rounded-lg min-h-[100px] max-h-[150px] p-1 font-mono" placeholder="write something . . ."></textarea>
                             <p class="text-sm text-red-700">{{ $page.props.errors.info }}</p>
 
                         </div>

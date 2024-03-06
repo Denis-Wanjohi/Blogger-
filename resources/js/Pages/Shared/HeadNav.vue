@@ -57,17 +57,17 @@ let logout =()=>{
       </div>
       <div class="ml-5 cursor-pointer w-full">
         <img :src=$page.props.auth.user.profilePicture alt class="w-10 h-10 rounded-full shadow-xl" @click.prevent="menu" v-if="$page.props.auth.user"/>
-        <div v-else>
+        <div v-else class="flex">
                 <Link
                     :href="route('login')"
-                    class="font-semibold text-gray-600 bg-blue-700 p-1.5 rounded-l hover:bg-blue-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                    class="font-semibold  bg-blue-700 p-1.5 rounded-l hover:bg-blue-500 hover:text-gray-900 dark:text-black-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                     >Log in</Link
                 >
 
                 <Link
                     
                     :href="route('register')"
-                    class="ms-4 font-semibold  hidden sm:block  bg-blue-700 p-1.5 rounded-r hover:bg-blue-500 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                    class="ms-4 font-semibold  hidden sm:block  bg-blue-700 p-1.5 rounded-r hover:bg-blue-500 text-gray-600 hover:text-gray-900 dark:text-black dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                     >Register</Link
                 >
             
@@ -93,10 +93,10 @@ let logout =()=>{
       </span>
       <div class="flex ml-4 mt-2" v-if=$page.props.auth.user >
         <img :src=$page.props.auth.user.profilePicture class="w-10 rounded-full" />
-        <div class="flex flex-col ml-5">
+        <Link href="/profile" class="flex flex-col ml-5">
           <span class="font-bold">{{$page.props.auth.user.firstname}} {{ $page.props.auth.user.lastname }}</span>
           <span class="text-sm">{{ $page.props.auth.user.email }}</span>
-        </div>
+        </Link>
       </div>
       <hr class="border-blue-900 my-4" />
       <div class="flex rounded-5xl justify-between mx-auto sm:hidden">

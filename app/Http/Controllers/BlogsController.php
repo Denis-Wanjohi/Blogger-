@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class BlogsController extends Controller
 {
     function index(){
-    $blogs = Blogs::all();
+    $blogs = Blogs::paginate(10);
     $comments = Comments::all();
     $likes = Likes::whereNull('user_id')->get();
    
@@ -123,6 +123,19 @@ class BlogsController extends Controller
         }elseif(request('value') ==  1){
             Likes::where('blogs_id','=',$blog_id)->decrement('dislikes',1);
         }
+        return back();
+    }
+
+    public function manage(){
+
+        return inertia('Components/Manage/Blogs',[
+            'blogs' =>Blogs::where('user_id','=',Auth::user()->id)->get()
+
+        ]);
+    }
+    public function delete(){
+        $blog = Blogs::find(request('id'));
+        $blog->delete();
         return back();
     }
 }

@@ -79,7 +79,7 @@ Route::group(['prefix'=>'auth'],function(){
     Route::post('/login',[UserController::class,'login'])->name('auth.login');
     Route::post('/logout',[UserController::class,'logout'])->name('auth.logout');
     Route::get('register',function(){
-        return inertia('Components/Auth/Register');
+        return inertia('Components/Auth/Register')->name('register');
     });
     Route::post('/register',[UserController::class,'register'])->name('auth.register');
 });
@@ -97,6 +97,10 @@ Route::group(['prefix' => 'post'],function(){
     Route::post('/event',[EventsController::class,'createEvent'])->middleware('auth');
 });
 
+Route::get('/manage/blogs',[BlogsController::class,'manage']);
+Route::get('/manage/events',[EventsController::class,'manage']);
+Route::post('/manage/blog/delete',[BlogsController::class,'delete']);
+Route::post('/manage/event/delete',[EventsController::class,'delete']);
 
 Route::post('/comment',[CommentsController::class,'create']);
 Route::post('/like',[BlogsController::class,'like']);

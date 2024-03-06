@@ -43,11 +43,22 @@ class EventsController extends Controller
             'faculty' => 'required'
         ]);
 
-        $event['banner'] = request('banner')->store('events','public');
+        // $event['banner'] = request('banner')->store('events','public');
+        $event['banner'] = 'none';
         $event['user_id'] = Auth::user()->id;
         
         Events::create($event);
 
         return redirect('/events');
+    }
+
+    public function manage(){
+        return inertia('Components/Manage/Events',[
+            'events' =>Events::where('user_id','=',Auth::user()->id)->get()
+        ]);
+    }
+    public function delete(){
+        Events::where('user_id','=',Auth::user()->id)->delete();
+        return back();
     }
 }
