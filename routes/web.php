@@ -101,6 +101,10 @@ Route::get('/manage/blogs',[BlogsController::class,'manage']);
 Route::get('/manage/events',[EventsController::class,'manage']);
 Route::post('/manage/blog/delete',[BlogsController::class,'delete']);
 Route::post('/manage/event/delete',[EventsController::class,'delete']);
+Route::get('/manage/adminBlogs',[BlogsController::class,'adminManagement']);
+Route::get('/manage/adminEvents',[EventsController::class,'adminManagement']);
+// Route::post('/manage/blog/delete',[BlogsController::class,'delete']);
+// Route::post('/manage/event/delete',[EventsController::class,'delete']);
 
 Route::post('/comment',[CommentsController::class,'create']);
 Route::post('/like',[BlogsController::class,'like']);

@@ -20,7 +20,9 @@ let {blog} = toRefs(props)
                 {{blog.Title }}
     
             </div>
-            <img :src=blog.banner alt="" class="h-[40%] w-full object-cover">
+            <div class="max-h-[400px]">
+                <img :src=blog.banner alt="" class="max-h-[400px]">
+            </div>
             <div class="text-center text-xl font-bold py-2 opacity-1">
                 {{blog.mini_title}}
             </div>

@@ -57,6 +57,11 @@ class EventsController extends Controller
             'events' =>Events::where('user_id','=',Auth::user()->id)->get()
         ]);
     }
+    public function adminManagement(){
+        return inertia('Components/Manage/AdminEvents',[
+            'events' =>Events::all()
+        ]);
+    }
     public function delete(){
         Events::where('user_id','=',Auth::user()->id)->delete();
         return back();

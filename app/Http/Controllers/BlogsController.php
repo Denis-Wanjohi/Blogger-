@@ -10,6 +10,7 @@ use App\Models\Comments;
 use App\Models\Likes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Laravel\Facades\Image;
 
 class BlogsController extends Controller
 {
@@ -60,10 +61,20 @@ class BlogsController extends Controller
             'faculty' => 'required'
         ]);
         if(request()->hasFile('banner')){
-            $file = request('banner')->store('blogs','public');
+            $path = request('banner')->store('blogs','public');
+            $file = public_path('/storage/'.$path);
+            $image = Image::read($file);
+            $image->resize(400,400, function ($constraint) {
+                $constraint->aspectRatio();
+                    $constraint->upsize();
+            });
+            $image->save($file);
+            $blog['user_id'] = Auth::user()->id;
+            // dd($image);
+            $blog['banner'] ="/storage/".$path;
         }
-        $blog['user_id'] = Auth::user()->id;
-        $blog['banner'] = "/storage/".$file;
+        
+       
 
         Blogs::create($blog);
         //getting the blog id
@@ -127,10 +138,14 @@ class BlogsController extends Controller
     }
 
     public function manage(){
-
         return inertia('Components/Manage/Blogs',[
             'blogs' =>Blogs::where('user_id','=',Auth::user()->id)->get()
 
+        ]);
+    }
+    public function adminManagement(){
+        return inertia('Components/Manage/AdminBlogs',[
+            'blogs' =>Blogs::orderBy('created_at','desc')->get()
         ]);
     }
     public function delete(){

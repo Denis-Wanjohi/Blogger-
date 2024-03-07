@@ -24,16 +24,16 @@ let openBlog = (data) => {
 
 <template >
   <Head title="Blogs"></Head>
-  <div class="w-full h-screen overflow-y-scroll" style="scrollbar-width: none;">
+  <div class="w-full h-screen overflow-y-scroll" style="scrollbar-width: none;"  v-if="blogs.data.length !== 0">
     <section>
-      <TopBlog :blogs="blogs.data" @readBlog="openBlog"></TopBlog>
+      <!-- <TopBlog :blogs="blogs.data" @readBlog="openBlog"></TopBlog> -->
     </section>
     <section class="pb-20 w-full bg-red-500 overflow-y-auto" style="scrollbar-width: none;">
       <div class="flex flex-wrap justify-evenly">
         <div class="md:w-[30%]" v-for="data in blogs.data" :key="data">
           <Blog :blog="data" @readBlog="openBlog"></Blog>
         </div>
-      </div>one
+      </div>
       <div class="flex w-fit pb-10 mt-2 mx-auto">
         <!--  -->
         <div v-for="link in blogs.meta.links" :key="link">
@@ -59,5 +59,9 @@ let openBlog = (data) => {
         :likes="likes"
       ></ViewBlog>
     </section>
+  </div>
+  <div v-else class="w-screen h-screen  pt-[10px] bg-cyan-100">
+      <p class="mx-auto font-bold text-gray-300 text-center text-4xl italic">...no posted blogs</p>
+      <img src="/oops.gif" class="mx-auto sm:w-1/2 mt-[50px]" alt="">
   </div>
 </template>
