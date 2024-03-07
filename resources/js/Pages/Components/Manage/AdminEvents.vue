@@ -4,33 +4,42 @@ import HeadNav from "@/Pages/Shared/HeadNav.vue";
 import { router } from "@inertiajs/vue3";
 
 const props = defineProps({
-    blogs:Object
+    events:Object
 })
-let {blogs} = toRefs(props)
+let {events} = toRefs(props)
 </script>
 <template>
     <HeadNav></HeadNav>
+    
     <div>
-        <table class="w-[90%] mx-auto mt-2 border border-collapse" v-if="blogs.length !== 0">
+        <table class="w-[90%] mx-auto mt-2 border border-collapse" v-if="events.length !== 0">
             <thead class="bg-cyan-400">
                 <tr class="text-sm">
                     <th>TITLE</th>
-                    <th>MINI TITLE</th>
-                    <th>BANNER</th>
-                    <th>FACULTY</th>
-                    <th>DESCRIPTION</th>
+                    <th>LOCATION</th>
+                    <th>DATE</th>
+                    <th>START TIME</th>
+                    <th>END TIME</th>
+                    <th>INFO</th>
+                    <!-- <th>FACULTY</th> -->
                     <!-- <th>POSTED ON</th> -->
-                    <th class="bg-green-300" colspan="2">OPTIONS</th>
+                    <th colspan="2">OPTIONS</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="text-center hover:bg-green-200" v-for="blog in blogs">
-                    <td>{{blog.Title}}</td>
-                    <td>{{blog.mini_title}}</td>
-                    <td><img :src=blog.banner class="w-[100px] h-[80px] object-fill" alt=""></td>
-                    <td class="text-center">{{blog.faculty}} </td>
-                    <td>{{ blog.description }}</td>
-                    <!-- <td>{{blog.created_at.format(YYYYMMDD)}}</td> -->
+                <tr class="text-center" v-for="event in events">
+                    <td>{{event.Title}}</td>
+                    <td>{{event.location}}</td>
+                    <td>{{event.date}}</td>
+                    <td>{{event.start_time}}</td>
+                    <td>{{event.end_time}}</td>
+                    <!-- <td><img src="/user-placeholder.png" class="w-[100px] h-[80px] object-fill" alt=""></td> -->
+                    <td>
+                        <p class="max-h-[100px] overflow-auto" style="scrollbar-width: none;">{{event.info}}</p>
+                    </td>
+                    
+                    <!-- <td class="text-center">Law</td> -->
+                    <!-- <td>today</td> -->
                     <!-- <td>
                         <button class="text-sm font-bold" 
                         @click.prevent="router.get('/')"
@@ -38,7 +47,7 @@ let {blogs} = toRefs(props)
                     </td> -->
                     <td>
                         <button class="" 
-                        @click.prevent="router.post('/manage/blog/delete',{id:blog.id})"
+                        @click.prevent="router.post('/manage/event/delete',{id:event.id})"
                         >
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512">
                             <rect width="512" height="512" fill="none" />
@@ -54,9 +63,9 @@ let {blogs} = toRefs(props)
                 </tr>
             </tbody>
         </table>
-        <div v-else class="w-full  pt-[10px]">
-            <p class="mx-auto font-bold text-gray-300 text-center text-4xl italic">...no posted blogs</p>
-            <img src="/oops.gif" class="mx-auto sm:w-1/2 mt-[50px]" alt="">
+        <div v-else  class="w-full mx-auto   pt-[10px]">
+            <p class="mx-auto text-center font-bold text-4xl  text-slate-300 italic">hello there <br>...no posted  events from you</p>
+            <img src="/oops.gif" class="mx-auto sm:w-1/2 mt-[50px]" alt="oops GIF">
         </div>
     </div>
 

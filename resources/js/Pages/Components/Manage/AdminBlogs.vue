@@ -23,13 +23,13 @@ let {blogs} = toRefs(props)
                     <th class="bg-green-300" colspan="2">OPTIONS</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="text-center hover:bg-green-200" v-for="blog in blogs">
+            <tbody >
+                <tr class="text-center bg-green-500 h-[80px]" v-for="blog in blogs">
                     <td>{{blog.Title}}</td>
                     <td>{{blog.mini_title}}</td>
                     <td><img :src=blog.banner class="w-[100px] h-[80px] object-fill" alt=""></td>
-                    <td class="text-center">{{blog.faculty}} </td>
-                    <td>{{ blog.description }}</td>
+                    <td class="text-center">{{blog.faculty}}</td>
+                    <td class="bg-red-500  border-2 border-black"><p class="h-[100px] overflow-auto" style="scrollbar-width: none;">{{ blog.description }}</p></td>
                     <!-- <td>{{blog.created_at.format(YYYYMMDD)}}</td> -->
                     <!-- <td>
                         <button class="text-sm font-bold" 
@@ -55,7 +55,7 @@ let {blogs} = toRefs(props)
             </tbody>
         </table>
         <div v-else class="w-full  pt-[10px]">
-            <p class="mx-auto font-bold text-gray-300 text-center text-4xl italic">...no posted blogs</p>
+            <p class="mx-auto font-bold text-4xl italic">...no posted blogs</p>
             <img src="/oops.gif" class="mx-auto sm:w-1/2 mt-[50px]" alt="">
         </div>
     </div>
