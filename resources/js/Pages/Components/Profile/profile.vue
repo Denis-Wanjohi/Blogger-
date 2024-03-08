@@ -16,7 +16,7 @@ const props = defineProps({
                 </div>
                 <div class="flex sm:flex-row flex-col sm:w-3/4 mt-5 rounded sm:h-[40%] h-fit mx-auto bg-blue-600">
                     <div class="sm:w-[40%]  sm:h-full w-full  sm:rounded sm:grid sm:place-content-center sm:py-3 overflow-hidden">
-                        <img :src="user.profilePicture" class=" sm:w-[260px] sm:h-[160px] w-[100px] h-[100px] mx-auto rounded-full  sm:rounded-br-[100px] sm:my-5"  alt="">
+                        <img :src="user.profilePicture" class="object-cover mx-auto rounded-full  sm:rounded-br-[100px] sm:my-5"  alt="">
                     </div>
                     <div class="w-full bg-teal-100 grid place-items-center">
                         <div class="w-[90%] sm:h-[70%] shadow-xl rounded-xl text-xl grid px-5 overflow-auto">

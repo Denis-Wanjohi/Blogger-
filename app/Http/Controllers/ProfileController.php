@@ -12,8 +12,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Intervention\Image\Laravel\Facades\Image;
 use Inertia\Inertia;
 use Inertia\Response;
+use Intervention\Image\Drivers\Gd\Modifiers\ResizeModifier;
 use Symfony\Contracts\Service\Attribute\Required;
 
 class ProfileController extends Controller
@@ -48,8 +50,14 @@ class ProfileController extends Controller
             'faculty' => 'required'
         ]);
         if(request()->hasFile('profilePicture')){
-            $file = request()->file('profilePicture')->store('profiles','public');
-            $profile = '/storage/'.$file;
+            $path = request()->file('profilePicture')->store('profiles','public');
+            // $profile = '/storage/'.$file;
+            $file = public_path('/storage/'.$path);
+            $image = Image::read($file);
+            $image->scaleDown(200,200);
+            $image->save();
+            $profile = '/storage/'.$path;
+
         }else{
             $profile = User::find(Auth::user()->id)->profilePicture;
         }
@@ -68,8 +76,14 @@ class ProfileController extends Controller
             'bio' => 'required',
         ]);
         if(request()->hasFile('profilePicture')){
-            $file = request()->file('profilePicture')->store('profiles','public');
-            $profile = '/storage/'.$file;
+            // $file = request()->file('profilePicture')->store('profiles','public');
+            $path = request()->file('profilePicture')->store('profiles','public');
+            // $profile = '/storage/'.$file;
+            $file = public_path('/storage/'.$path);
+            $image = Image::read($file);
+            $image->scaleDown(200,200);
+            $image->save();
+            $profile = '/storage/'.$path;
         }else{
             $profile = User::find(Auth::user()->id)->profilePicture;
         }

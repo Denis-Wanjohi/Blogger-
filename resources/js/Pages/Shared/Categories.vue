@@ -2,8 +2,8 @@
 import { Link } from "@inertiajs/vue3";
 import { ref, toRefs } from "vue"
 
-const props = defineProps({path:String})
-let {path} = toRefs(props)
+const props = defineProps({path:String,openCatergories:Boolean})
+let {path,openCatergories} = toRefs(props)
 let CategoriesResize = ref(false)
 
 let emit = defineEmits(['faculty'])
@@ -39,7 +39,7 @@ let setFaculty = ()=>{
   
             </div>
             <div class="border-black flex justify-around bg-green-200 text-center" :class="[CategoriesResize?'block':'hidden']">
-                <Link href="/" class="w-full border-r border-black">Blogs</Link>
+                <Link href="/" class="w-full border-r border-black">{{openCatergories}}</Link>
                 <Link href="/events" class="w-full  border-black">Events</Link>
 
 

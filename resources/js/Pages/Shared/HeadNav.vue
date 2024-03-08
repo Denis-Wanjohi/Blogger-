@@ -27,7 +27,7 @@ let logout =()=>{
 </script>
 
 <template>
-    <nav class="bg-purple-700 flex justify-space-between sm:h-[70px] w-full">
+    <nav class="bg-purple-700 flex justify-space-between sm:h-[70px]">
       <div class="sm:flex sm:items-baseline ml-5 m-auto">
         <span class="text-5xl font-bold">
           <Link href="/">Blogger</Link>
@@ -52,7 +52,7 @@ let logout =()=>{
         <input
           type="text"
           placeholder="search..."
-          class="pl-1 outline-none border-0 border-b-black border-b-2 rounded focus:border-b-purple-900 max-h-8"
+          class="pl-1 hidden outline-none border-0 border-b-black border-b-2 rounded focus:border-b-purple-900 max-h-8"
         />
       </div>
       <div class="ml-5 cursor-pointer w-full">
@@ -99,7 +99,7 @@ let logout =()=>{
         </Link>
       </div>
       <hr class="border-blue-900 my-4" />
-      <div class="flex rounded-5xl justify-between mx-auto sm:hidden">
+      <div class="flex hidden rounded-5xl justify-between mx-auto sm:hidden">
         <input
           type="text"
           placeholder="search..."
@@ -114,8 +114,8 @@ let logout =()=>{
           </svg>
         </p>
       </div>
-      <div class="bg-green-400 flex justify-center" @click.prevent="categories">
-        <button class="text-2xl font-bold tracing-wide text-left p-1 rounded-2xl my-2 w-fit  sm:hidden block bg-cyan-500">Categories</button>
+      <div class="bg-green-400 flex justify-center" @click.prevent="categories,events=>$emit('openCatergories')">
+        <button class="text-2xl font-bold tracing-wide text-left p-1 rounded-2xl my-2 w-fit   bg-cyan-500">Categories</button>
       </div>
 
       <hr class="border-blue-900 my-4 sm:hidden" />

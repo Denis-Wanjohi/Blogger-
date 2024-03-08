@@ -58,7 +58,7 @@ const menu = () => {
 }
 
 let faculty = ref('')
-
+let openCatergories = ref(null)
 let selectedFaculty = (data)=>{
     console.log(data.data.value)
     faculty.value = data.data.value
@@ -73,16 +73,17 @@ let selectedFaculty = (data)=>{
 
 <template>
   <!-- HEADER -->
-  <HeadNav :canLogin="canLogin" />
-
+  <HeadNav :canLogin="canLogin" class="bg-green-300"  @openCatergories="openCatergories = true" />
+    {{ openCatergories }}
   <!-- CONTENTS -->
 
   <div class="flex">
     
-    <Categories @faculty="selectedFaculty"></Categories>
+    <Categories @faculty="selectedFaculty" @categoriesVisibility="bool" :openCatergories = openCatergories></Categories>
     <div>
       <!-- <TabLinks :blogPath="blogs.blogs.path"></TabLinks> -->
       <div>
+
         <BlogLayout @readBlog="BlogOverlay" :blogs="blogs" :comments="comments" :likes="likes"  />
       </div>
     </div>

@@ -30,8 +30,8 @@ let blogNumber = ref(Math.floor(Math.random()*props.blogs.length));
                             </button>
                         </div>
                     </div>
-                    <div class="sm:w-1/2">
-                        <img :src=blogs[blogNumber].banner alt="" class=" w-full h-[400px] object-cover">
+                    <div class="sm:w-1/2 cursor-pointer" @click.prevent="events=> $emit('readBlog',{data:blogs[blogNumber]})" >
+                        <img :src=blogs[blogNumber].banner alt="banner" class=" w-full h-[400px] object-cover ">
                     </div>
                     <p class="sm:text-4xl text-2xl font-black text-center my-1 pb-1 sm:border-b-black sm:border-b-2 sm:hidden">{{blogs[blogNumber].Title}}</p>
                     
