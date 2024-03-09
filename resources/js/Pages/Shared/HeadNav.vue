@@ -9,6 +9,7 @@ defineProps({
     
   }
 })
+const emit =  defineEmits(['phoneMenu'])
 let menuVisibility = ref(false)
 let categoriesVisibility = ref(false)
 const menu = () => {
@@ -17,6 +18,7 @@ const menu = () => {
 const categories = ()=>{
   menuVisibility.value = false
   categoriesVisibility.value = true
+  emit('phoneMenu')
   console.log(categoriesVisibility.value)
 }
 
@@ -56,12 +58,14 @@ let logout =()=>{
         />
       </div>
       <div class="ml-5 cursor-pointer w-full">
-        <img :src=$page.props.auth.user.profilePicture alt class="w-10 h-10 rounded-full shadow-xl" @click.prevent="menu" v-if="$page.props.auth.user"/>
+        <div  v-if="$page.props.auth.user">
+          <img :src=$page.props.auth.user.profilePicture alt class="sm:w-[120px] sm:h-[60px] w-[50px] h-[50px] rounded-full shadow-xl" @click.prevent="menu"/>
+        </div>
         <div v-else class="flex">
                 <Link
                     :href="route('login')"
                     class="font-semibold  bg-blue-700 p-1.5 rounded-l hover:bg-blue-500 hover:text-gray-900 dark:text-black-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                    >Log in</Link
+                    >Login</Link
                 >
 
                 <Link
@@ -114,7 +118,7 @@ let logout =()=>{
           </svg>
         </p>
       </div>
-      <div class="bg-green-400 flex justify-center" @click.prevent="categories,events=>$emit('openCatergories')">
+      <div class="bg-green-400 flex justify-center" @click.prevent="categories">
         <button class="text-2xl font-bold tracing-wide text-left p-1 rounded-2xl my-2 w-fit   bg-cyan-500">Categories</button>
       </div>
 

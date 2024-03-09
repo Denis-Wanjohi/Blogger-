@@ -28,7 +28,7 @@ let openBlog = (data) => {
     <section>
       <TopBlog :blogs="blogs.data" @readBlog="openBlog"></TopBlog>
     </section>
-    <section class="pb-20 sm:w-[calc(100vw-60px)]  bg-red-500 overflow-y-auto" style="scrollbar-width: none;">
+    <section class="pb-20 sm:w-[calc(100vw-70px)]  bg-red-500 overflow-y-auto" style="scrollbar-width: none;">
       <div class="flex flex-wrap justify-evenly ">
         <div class="sm:w-[33%]"  v-for="data in blogs.data" :key="data">
           <Blog :blog="data" @readBlog="openBlog"></Blog>
