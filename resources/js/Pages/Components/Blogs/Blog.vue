@@ -21,7 +21,7 @@ let {blog} = toRefs(props)
     
             </div>
             <div class="max-h-[400px]">
-                <img :src=blog.banner alt="" class="max-h-[400px]">
+                <img :src=blog.banner alt="" class="max-h-[400px] mx-auto">
             </div>
             <div class="text-center text-xl font-bold py-2 opacity-1">
                 {{blog.mini_title}}
