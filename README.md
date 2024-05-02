@@ -1,6 +1,5 @@
 # BLOGGER
 
-still in progress  ........
 
 
 <!-- ## Installation
